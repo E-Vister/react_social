@@ -1,4 +1,5 @@
 import scss from './Profile.module.scss';
+import Feed from "./Feed/Feed";
 
 const Profile = () => {
     return (
@@ -14,15 +15,7 @@ const Profile = () => {
                     alt="avatar"/>
                 description
             </div>
-            <div className={scss.feed}>
-                My Posts
-                <div className={scss.new_post}>New Post</div>
-                <div className={scss.posts}>
-                    <div className={scss.post}>post 1</div>
-                    <div className={scss.post}>post 2</div>
-                    <div className={scss.post}>post 3</div>
-                </div>
-            </div>
+            <Feed />
         </div>
     );
 }
