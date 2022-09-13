@@ -1,7 +1,39 @@
 .item {
-  img {
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-  }
+  display: grid;
+
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: repeat(2, 1fr);
+
+  grid-template-areas:
+          "avatar nickname"
+          "avatar message"
+          "likes likes";
+
+  column-gap: 7px;
+
+  margin: 0 0 10px 7px;
+
+  vertical-align: bottom;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+
+  grid-area: avatar;
+}
+
+.nickname {
+  padding-top: 3px;
+  grid-area: nickname;
+}
+
+.message {
+  grid-area: message;
+  font-weight: normal;
+}
+
+.likes {
+  grid-area: likes;
 }
