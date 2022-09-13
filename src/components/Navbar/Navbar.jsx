@@ -1,14 +1,25 @@
 import scss from './Navbar.module.scss';
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav className={scss.navbar}>
-            <div className={scss.item}><a href='#'>Profile</a></div>
-            <div className={scss.item}><a href='#'>Messages</a></div>
-            <div className={scss.item}><a href='#'>News</a></div>
-            <div className={scss.item}><a href='#'>Music</a></div>
+            <div className={scss.item}>
+                <Link to="/profile">Profile</Link>
+            </div>
+            <div className={scss.item}>
+                <Link to='/messages'>Messages</Link>
+            </div>
+            <div className={scss.item}>
+                <Link to='/news'>News</Link>
+            </div>
+            <div className={scss.item}>
+                <Link to='/music'>Music</Link>
+            </div>
             <br/>
-            <div className={scss.item}><a href='#'>Settings</a></div>
+            <div className={scss.item}>
+                <Link to='/settings'>Settings</Link>
+            </div>
         </nav>
     );
 }

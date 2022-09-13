@@ -9,7 +9,7 @@ const Post = (props) => {
                 alt="post_avatar"/>
             <span className={scss.nickname}>{props.nickname}</span>
             <span className={scss.message}>{props.message}</span>
-            <div className={scss.likes}><span>{props.likesCount} {(props.likesCount == 1) ? `Like` : `Likes`}</span></div>
+            <div className={scss.likes}><span>{props.likesCount} {(props.likesCount === 1) ? `Like` : `Likes`}</span></div>
         </div>
     );
 }

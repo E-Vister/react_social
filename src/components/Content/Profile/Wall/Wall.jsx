@@ -1,9 +1,9 @@
-import scss from './Feed.module.scss';
+import scss from './Wall.module.scss';
 import Post from "./Post/Post";
 
-const Feed = () => {
+const Wall = () => {
     return (
-        <div className={scss.feed}>
+        <div className={scss.wall}>
             Feed
             <div className={scss.new_post}>New Post</div>
             <div className={scss.posts}>
@@ -15,4 +15,4 @@ const Feed = () => {
     );
 }
 
-export default Feed;
+export default Wall;
