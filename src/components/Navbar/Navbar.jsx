@@ -1,24 +1,28 @@
 import scss from './Navbar.module.scss';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav className={scss.navbar}>
             <div className={scss.item}>
-                <Link to="/profile">Profile</Link>
+                <NavLink to="/profile"
+                         className={navData => navData.isActive ? scss.active : scss.item}>Profile</NavLink>
             </div>
             <div className={scss.item}>
-                <Link to='/messages'>Messages</Link>
+                <NavLink to='/messages'
+                         className={navData => navData.isActive ? scss.active : scss.item}>Messages</NavLink>
             </div>
             <div className={scss.item}>
-                <Link to='/news'>News</Link>
+                <NavLink to='/news'
+                         className={navData => navData.isActive ? scss.active : scss.item}>News</NavLink>
             </div>
             <div className={scss.item}>
-                <Link to='/music'>Music</Link>
+                <NavLink to='/music'
+                         className={navData => navData.isActive ? scss.active : scss.item}>Music</NavLink>
             </div>
-            <br/>
             <div className={scss.item}>
-                <Link to='/settings'>Settings</Link>
+                <NavLink to='/settings'
+                         className={navData => navData.isActive ? scss.active : scss.item}>Settings</NavLink>
             </div>
         </nav>
     );
