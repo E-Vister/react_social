@@ -2,11 +2,11 @@ import scss from './Profile.module.scss';
 import Wall from "./Wall/Wall";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <div className={scss.profile}>
             <ProfileInfo />
-            <Wall />
+            <Wall posts={props.posts}/>
         </div>
     );
 }

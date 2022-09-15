@@ -2,14 +2,12 @@ import scss from './Messages.module.scss';
 import DialogItem from "./DialogItem/DialogItem";
 
 const Messages = (props) => {
+    let dialogsElements = props.dialogs.map((item) => <DialogItem username={item.name} id={item.id}/>);
+
     return (
-      <div className={scss.messages}>
-          <DialogItem username={`John Garner`} id={`1`}/>
-          <DialogItem username={`Jane Heaton`} id={`2`}/>
-          <DialogItem username={`Alex Drake`} id={`3`}/>
-          <DialogItem username={`Jakub Mathis`} id={`4`}/>
-          <DialogItem username={`Elisabeth Plummer`} id={`5`}/>
-      </div>
+        <div className={scss.messages}>
+            {dialogsElements}
+        </div>
     );
 }
 

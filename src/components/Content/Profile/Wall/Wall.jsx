@@ -1,15 +1,15 @@
 import scss from './Wall.module.scss';
 import Post from "./Post/Post";
 
-const Wall = () => {
+const Wall = (props) => {
+    let postsElements = props.posts.map((item) => <Post id={item.id} author={item.userInfo} message={item.message} likesCount={item.likeCount}/>);
+
     return (
         <div className={scss.wall}>
             Feed
             <div className={scss.new_post}>New Post</div>
             <div className={scss.posts}>
-                <Post message={`Hey. How are you feeling today?`} likesCount={20} nickname={`John`}/>
-                <Post message={`I finished my album. Go check it out!`} likesCount={35} nickname={'Michael'}/>
-                <Post message={`I'm going on a picnic. Do you wanna join?`} likesCount={1} nickname={'Alex'}/>
+                {postsElements}
             </div>
         </div>
     );

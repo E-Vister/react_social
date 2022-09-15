@@ -4,12 +4,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Content from "./components/Content/Content";
 
 
-const App = () => {
+const App = (props) => {
     return (
         <div className="App">
             <Header />
             <Navbar />
-            <Content />
+            <Content posts={props.posts} dialogs={props.dialogs}/>
         </div>
     );
 }
