@@ -6,26 +6,30 @@ const Navbar = () => {
         <nav className={scss.navbar}>
             <div className={scss.item}>
                 <NavLink to="/profile"
-                         className={navData => navData.isActive ? scss.active : scss.item}>Profile</NavLink>
+                         className={isActive()}>Profile</NavLink>
             </div>
             <div className={scss.item}>
                 <NavLink to='/messages'
-                         className={navData => navData.isActive ? scss.active : scss.item}>Messages</NavLink>
+                         className={isActive()}>Messages</NavLink>
             </div>
             <div className={scss.item}>
                 <NavLink to='/news'
-                         className={navData => navData.isActive ? scss.active : scss.item}>News</NavLink>
+                         className={isActive()}>News</NavLink>
             </div>
             <div className={scss.item}>
                 <NavLink to='/music'
-                         className={navData => navData.isActive ? scss.active : scss.item}>Music</NavLink>
+                         className={isActive()}>Music</NavLink>
             </div>
             <div className={scss.item}>
                 <NavLink to='/settings'
-                         className={navData => navData.isActive ? scss.active : scss.item}>Settings</NavLink>
+                         className={isActive()}>Settings</NavLink>
             </div>
         </nav>
     );
+}
+
+const isActive = () => {
+    return navData => navData.isActive ? scss.active : scss.item;
 }
 
 export default Navbar;
