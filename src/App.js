@@ -9,7 +9,7 @@ const App = (props) => {
         <div className="App">
             <Header />
             <Navbar />
-            <Content posts={props.posts} dialogs={props.dialogs}/>
+            <Content state={props.state}/>
         </div>
     );
 }

@@ -6,7 +6,7 @@ const Profile = (props) => {
     return (
         <div className={scss.profile}>
             <ProfileInfo />
-            <Wall posts={props.posts}/>
+            <Wall posts={props.profile.posts}/>
         </div>
     );
 }
