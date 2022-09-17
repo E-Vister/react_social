@@ -1,0 +1,14 @@
+.submit_post{
+  margin-top: 5px;
+
+  textarea {
+    resize: none;
+    outline: none;
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    width: 510px;
+    height: 30px;
+  }
+}

@@ -1,5 +1,6 @@
 import scss from './Wall.module.scss';
 import Post from "./Post/Post";
+import SubmitPost from "./SubmitPost/SubmitPost";
 
 const Wall = (props) => {
     let postsElements = props.posts.map((item) => <Post id={item.id}
@@ -10,7 +11,7 @@ const Wall = (props) => {
     return (
         <div className={scss.wall}>
             Feed
-            <div className={scss.new_post}>New Post</div>
+            <SubmitPost addPost={props.addPost}/>
             <div className={scss.posts}>
                 {postsElements}
             </div>

@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 let users = [
     {
         id: 0,
@@ -75,6 +77,20 @@ const state = {
             users[3],
         ]
     }
+}
+
+export let addPost = (text) => {
+    if (text === '') return;
+
+    let newPost = {
+        id: 5,
+        author: users[0],
+        message: text,
+        likeCount: 0
+    }
+
+    state.profile.posts.push(newPost);
+    renderEntireTree(state);
 }
 
 export default state;
