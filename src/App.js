@@ -8,7 +8,7 @@ const App = (props) => {
     return (
         <div className="App">
             <Header />
-            <Navbar />
+            <Navbar navbar={props.state.navbar}/>
             <Content state={props.state}/>
         </div>
     );

@@ -1,0 +1,19 @@
+.last_friends_item {
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    border: 1.5px solid lightpink;
+    background-color: white;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  text-align: center;
+  font-weight: normal;
+
+  margin-right: 3px;
+}
+

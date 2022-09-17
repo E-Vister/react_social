@@ -6,7 +6,10 @@ const DialogItem = (props) => {
 
     return (
         <div className={scss.dialog_item}>
-            <NavLink to={path}>{props.username}</NavLink>
+            <NavLink to={path}>
+                <img className={scss.avatar} src={props.avatar} alt="avatar"/>
+                {props.username}
+            </NavLink>
         </div>
     );
 }
