@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import {BrowserRouter} from "react-router-dom";
-import state from './redux/state';
-import {addPost, updatePostField, subscribe} from './redux/state';
+import store from './redux/state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -12,12 +11,12 @@ let renderEntireTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} addPost={addPost} updatePostField={updatePostField}/>
+                <App state={state} addPost={store.addPost.bind(store)} updatePostField={store.updatePostField.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>
     );
 }
 
-renderEntireTree(state);
+renderEntireTree(store.getState());
 
-subscribe(renderEntireTree);
+store.subscribe(renderEntireTree);
