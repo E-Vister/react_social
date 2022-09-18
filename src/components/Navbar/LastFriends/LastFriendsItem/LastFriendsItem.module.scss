@@ -1,10 +1,15 @@
 .last_friends_item {
-  img {
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
-    border: 1.5px solid lightpink;
-    background-color: white;
+  p {
+    img {
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      border: 1.5px solid lightpink;
+      background-color: white;
+    }
+
+    text-align: center;
+    margin: 0 0 0 0;
   }
 
   display: flex;
@@ -13,7 +18,8 @@
 
   text-align: center;
   font-weight: normal;
+  font-size: 0.75em;
 
-  margin-right: 3px;
+  margin: 0 3px 0 0;
 }
 

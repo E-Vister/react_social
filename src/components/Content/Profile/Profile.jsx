@@ -5,8 +5,9 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 const Profile = (props) => {
     return (
         <div className={scss.profile}>
-            <ProfileInfo />
-            <Wall posts={props.profile.posts} addPost={props.addPost}/>
+            <ProfileInfo/>
+            <Wall posts={props.profile.posts} newPostTextField={props.profile.newPostTextField} addPost={props.addPost}
+                  updatePostField={props.updatePostField}/>
         </div>
     );
 }

@@ -62,6 +62,7 @@ const state = {
                 likeCount: 1
             },
         ],
+        newPostTextField: '',
     },
     dialogs: [
         {id: 1, author: users[1]},
@@ -79,7 +80,9 @@ const state = {
     }
 }
 
-export let addPost = (text) => {
+export const addPost = () => {
+    let text = state.profile.newPostTextField;
+
     if (text === '') return;
 
     let newPost = {
@@ -90,6 +93,11 @@ export let addPost = (text) => {
     }
 
     state.profile.posts.push(newPost);
+    renderEntireTree(state);
+}
+
+export const updatePostField = (text) => {
+    state.profile.newPostTextField = text;
     renderEntireTree(state);
 }
 
