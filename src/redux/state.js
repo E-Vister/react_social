@@ -1,4 +1,4 @@
-import {renderEntireTree} from "../render";
+let renderEntireTree;
 
 let users = [
     {
@@ -99,6 +99,10 @@ export const addPost = () => {
 export const updatePostField = (text) => {
     state.profile.newPostTextField = text;
     renderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+    renderEntireTree = observer;
 }
 
 export default state;
