@@ -5,13 +5,20 @@ const SubmitPost = (props) => {
     let newPostElement = React.createRef();
 
     const addPost = () => {
-        props.addPost();
-        props.updatePostField('');
+        let addPost = {
+            type: 'ADD-POST'
+        }
+
+        props.dispatch(addPost);
     }
 
     const onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.updatePostField(text);
+        let updatePostField = {
+            type: 'UPDATE-POST-FIELD',
+            text: newPostElement.current.value
+        }
+
+        props.dispatch(updatePostField);
     }
 
     return (

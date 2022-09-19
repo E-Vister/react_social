@@ -1,5 +1,3 @@
-
-
 let users = [
     {
         id: 0,
@@ -80,35 +78,40 @@ let store = {
             ]
         }
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         console.log('State changed');
     },
-    addPost() {
-        debugger;
-        let text = this._state.profile.newPostTextField;
-
-        if (text === '') return;
-
-        let newPost = {
-            id: 5,
-            author: users[0],
-            message: text,
-            likeCount: 0
-        }
-
-        this._state.profile.posts.push(newPost);
-        this._callSubscriber(this._state);
-    },
-    updatePostField(text) {
-        this._state.profile.newPostTextField = text;
-        this._callSubscriber(this._state);
+    getState() {
+        return this._state;
     },
     subscribe(observer) {
         this._callSubscriber = observer;
-    }
+    },
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let text = this._state.profile.newPostTextField;
+
+                if (text === '') return;
+
+                let newPost = {
+                    id: 5,
+                    author: users[0],
+                    message: text,
+                    likeCount: 0
+                }
+
+                this._state.profile.posts.push(newPost);
+                this._state.profile.newPostTextField = '';
+                this._callSubscriber(this._state);
+                break;
+
+            case 'UPDATE-POST-FIELD':
+                this._state.profile.newPostTextField = action.text;
+                this._callSubscriber(this._state);
+                break;
+        }
+    },
 }
 
 export default store;

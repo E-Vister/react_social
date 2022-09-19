@@ -11,8 +11,7 @@ const Wall = (props) => {
     return (
         <div className={scss.wall}>
             Feed
-            <SubmitPost newPostTextField={props.newPostTextField} addPost={props.addPost}
-                        updatePostField={props.updatePostField}/>
+            <SubmitPost newPostTextField={props.newPostTextField} dispatch={props.dispatch}/>
             <div className={scss.posts}>
                 {postsElements}
             </div>

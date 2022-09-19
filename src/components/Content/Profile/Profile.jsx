@@ -6,8 +6,7 @@ const Profile = (props) => {
     return (
         <div className={scss.profile}>
             <ProfileInfo/>
-            <Wall posts={props.profile.posts} newPostTextField={props.profile.newPostTextField} addPost={props.addPost}
-                  updatePostField={props.updatePostField}/>
+            <Wall posts={props.profile.posts} newPostTextField={props.profile.newPostTextField} dispatch={props.dispatch}/>
         </div>
     );
 }
