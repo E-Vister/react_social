@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
+
 let users = [
     {
         id: 0,
@@ -89,7 +92,7 @@ let store = {
     },
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ADD_POST:
                 let text = this._state.profile.newPostTextField;
 
                 if (text === '') return;
@@ -106,12 +109,23 @@ let store = {
                 this._callSubscriber(this._state);
                 break;
 
-            case 'UPDATE-POST-FIELD':
+            case UPDATE_POST_FIELD:
                 this._state.profile.newPostTextField = action.text;
                 this._callSubscriber(this._state);
+                break;
+            default:
                 break;
         }
     },
 }
+
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+})
+
+export const updatePostFieldActionCreator = (text) => ({
+    type: UPDATE_POST_FIELD,
+    text: text,
+})
 
 export default store;

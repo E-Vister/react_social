@@ -1,24 +1,18 @@
 import scss from './SubmitPost.module.scss';
 import React from "react";
+import {addPostActionCreator, updatePostFieldActionCreator} from "../../../../../redux/state";
+
+
 
 const SubmitPost = (props) => {
     let newPostElement = React.createRef();
 
     const addPost = () => {
-        let addPost = {
-            type: 'ADD-POST'
-        }
-
-        props.dispatch(addPost);
+        props.dispatch(addPostActionCreator());
     }
 
     const onPostChange = () => {
-        let updatePostField = {
-            type: 'UPDATE-POST-FIELD',
-            text: newPostElement.current.value
-        }
-
-        props.dispatch(updatePostField);
+        props.dispatch(updatePostFieldActionCreator(newPostElement.current.value));
     }
 
     return (
