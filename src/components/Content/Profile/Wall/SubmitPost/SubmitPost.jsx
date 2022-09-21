@@ -1,7 +1,6 @@
 import scss from './SubmitPost.module.scss';
 import React from "react";
-import {addPostCreator, updatePostFieldCreator} from "../../../../../redux/state";
-
+import {addPostCreator, updatePostFieldCreator} from "../../../../../redux/profile-reducer";
 
 
 const SubmitPost = (props) => {

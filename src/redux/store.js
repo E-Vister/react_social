@@ -1,10 +1,8 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import navbarReducer from "./navbar-reducer";
 
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_FIELD = 'UPDATE-MESSAGE-FIELD';
-
-let users = [
+export let users = [
     {
         id: 0,
         name: `Jegoras`,
@@ -29,7 +27,12 @@ let users = [
         surname: `Drake`,
         avatar: `https://sticker-collection.com/stickers/plain/johnnysinsbrazzers/512/c912f70a-f67f-4fe1-af3c-10b5c590047ffile_368359.webp`
     },
-    {id: 4, name: `Jakub`, surname: `Mathis`, avatar: `https://m.media-amazon.com/images/I/61GLqTPhoJL._AC_UL400_.jpg`},
+    {
+        id: 4,
+        name: `Jakub`,
+        surname: `Mathis`,
+        avatar: `https://m.media-amazon.com/images/I/61GLqTPhoJL._AC_UL400_.jpg`
+    },
     {
         id: 5,
         name: `Elisabeth`,
@@ -104,7 +107,7 @@ let store = {
                 users[2],
                 users[3],
             ]
-        }
+        },
     },
     _callSubscriber() {
         console.log('State changed');
@@ -116,67 +119,12 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let text = this._state.profile.newPostTextField;
+        this._state.profile = profileReducer(this._state.profile, action);
+        this._state.dialogs = dialogsReducer(this._state.dialogs, action);
+        this._state.navbar = navbarReducer(this._state.navbar, action);
 
-            if (text === '') return;
-
-            let newPost = {
-                id: 5,
-                author: users[0],
-                message: text,
-                likeCount: 0
-            }
-
-            this._state.profile.posts.push(newPost);
-            this._state.profile.newPostTextField = '';
-            this._callSubscriber(this._state);
-        }
-
-        if (action.type === UPDATE_POST_FIELD) {
-            this._state.profile.newPostTextField = action.text;
-            this._callSubscriber(this._state);
-        }
-
-        if (action.type === SEND_MESSAGE) {
-            let text = this._state.dialogs.newMessageTextField;
-
-            if (text === '') return;
-
-            let newMessage = {
-                id: 5,
-                messageText: text
-            }
-
-            this._state.dialogs.dialogsArray[action.dialogId].messages.push(newMessage);
-            this._state.dialogs.newMessageTextField = '';
-            this._callSubscriber(this._state);
-        }
-
-        if (action.type === UPDATE_MESSAGE_FIELD) {
-            this._state.dialogs.newMessageTextField = action.text;
-            this._callSubscriber(this._state);
-        }
+        this._callSubscriber(this._state);
     },
 }
-
-export const addPostCreator = () => ({
-    type: ADD_POST
-});
-
-export const updatePostFieldCreator = (text) => ({
-    type: UPDATE_POST_FIELD,
-    text: text,
-});
-
-export const sendMessageCreator = (id) => ({
-    type: SEND_MESSAGE,
-    dialogId: id,
-});
-
-export const updateMessageFieldCreator = (text) => ({
-    type: UPDATE_MESSAGE_FIELD,
-    text: text,
-});
 
 export default store;

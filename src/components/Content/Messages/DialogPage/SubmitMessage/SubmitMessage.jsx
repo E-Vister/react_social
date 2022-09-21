@@ -1,6 +1,6 @@
 import scss from './SubmitMessage.module.scss';
 import React from "react";
-import {sendMessageCreator, updateMessageFieldCreator} from "../../../../../redux/state";
+import {sendMessageCreator, updateMessageFieldCreator} from "../../../../../redux/dialogs-reducer";
 
 const SubmitMessage = (props) => {
     const sendMessage = () => {
