@@ -1,18 +1,16 @@
 import scss from './SubmitPost.module.scss';
 import React from "react";
-import {addPostActionCreator, updatePostFieldActionCreator} from "../../../../../redux/state";
+import {addPostCreator, updatePostFieldCreator} from "../../../../../redux/state";
 
 
 
 const SubmitPost = (props) => {
-    let newPostElement = React.createRef();
-
     const addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostCreator());
     }
 
-    const onPostChange = () => {
-        props.dispatch(updatePostFieldActionCreator(newPostElement.current.value));
+    const onPostChange = (event) => {
+        props.dispatch(updatePostFieldCreator(event.target.value));
     }
 
     return (
@@ -23,7 +21,6 @@ const SubmitPost = (props) => {
                           id="new_post_content"
                           cols="50"
                           rows="5"
-                          ref={newPostElement}
                           value={props.newPostTextField}/>
             </div>
             <div>

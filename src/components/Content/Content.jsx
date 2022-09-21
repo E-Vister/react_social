@@ -10,11 +10,12 @@ const Content = (props) => {
     return (
         <div className={scss.content}>
             <Routes>
-                <Route path={''}
+                <Route path={'/*'}
                        element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
                 <Route path={'profile'}
                        element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
-                <Route path={'messages'} element={<Messages dialogs={props.state.dialogs}/>}/>
+                <Route path={'/messages/*'}
+                       element={<Messages dialogs={props.state.dialogs} dispatch={props.dispatch}/>}/>
                 <Route path={'news'} element={<News/>}/>
                 <Route path={'music'} element={<Music/>}/>
                 <Route path={'settings'} element={<Settings/>}/>

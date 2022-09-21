@@ -1,6 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
 
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_MESSAGE_FIELD = 'UPDATE-MESSAGE-FIELD';
+
 let users = [
     {
         id: 0,
@@ -66,13 +69,35 @@ let store = {
             ],
             newPostTextField: '',
         },
-        dialogs: [
-            {id: 1, author: users[1]},
-            {id: 2, author: users[2]},
-            {id: 3, author: users[3]},
-            {id: 4, author: users[4]},
-            {id: 5, author: users[5]},
-        ],
+        dialogs: {
+            dialogsArray: [
+                {
+                    id: 0, author: users[1], messages: [
+                        {
+                            id: 1,
+                            messageText: 'Morning'
+                        },
+                        {
+                            id: 2,
+                            messageText: 'What about our business?'
+                        }
+                    ]
+                },
+                {
+                    id: 1, author: users[2], messages: []
+                },
+                {
+                    id: 2, author: users[3], messages: []
+                },
+                {
+                    id: 3, author: users[4], messages: []
+                },
+                {
+                    id: 4, author: users[5], messages: []
+                },
+            ],
+            newMessageTextField: '',
+        },
         navbar: {
             friends: [
                 users[1],
@@ -91,41 +116,67 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        switch (action.type) {
-            case ADD_POST:
-                let text = this._state.profile.newPostTextField;
+        if (action.type === ADD_POST) {
+            let text = this._state.profile.newPostTextField;
 
-                if (text === '') return;
+            if (text === '') return;
 
-                let newPost = {
-                    id: 5,
-                    author: users[0],
-                    message: text,
-                    likeCount: 0
-                }
+            let newPost = {
+                id: 5,
+                author: users[0],
+                message: text,
+                likeCount: 0
+            }
 
-                this._state.profile.posts.push(newPost);
-                this._state.profile.newPostTextField = '';
-                this._callSubscriber(this._state);
-                break;
+            this._state.profile.posts.push(newPost);
+            this._state.profile.newPostTextField = '';
+            this._callSubscriber(this._state);
+        }
 
-            case UPDATE_POST_FIELD:
-                this._state.profile.newPostTextField = action.text;
-                this._callSubscriber(this._state);
-                break;
-            default:
-                break;
+        if (action.type === UPDATE_POST_FIELD) {
+            this._state.profile.newPostTextField = action.text;
+            this._callSubscriber(this._state);
+        }
+
+        if (action.type === SEND_MESSAGE) {
+            let text = this._state.dialogs.newMessageTextField;
+
+            if (text === '') return;
+
+            let newMessage = {
+                id: 5,
+                messageText: text
+            }
+
+            this._state.dialogs.dialogsArray[action.dialogId].messages.push(newMessage);
+            this._state.dialogs.newMessageTextField = '';
+            this._callSubscriber(this._state);
+        }
+
+        if (action.type === UPDATE_MESSAGE_FIELD) {
+            this._state.dialogs.newMessageTextField = action.text;
+            this._callSubscriber(this._state);
         }
     },
 }
 
-export const addPostActionCreator = () => ({
+export const addPostCreator = () => ({
     type: ADD_POST
-})
+});
 
-export const updatePostFieldActionCreator = (text) => ({
+export const updatePostFieldCreator = (text) => ({
     type: UPDATE_POST_FIELD,
     text: text,
-})
+});
+
+export const sendMessageCreator = (id) => ({
+    type: SEND_MESSAGE,
+    dialogId: id,
+});
+
+export const updateMessageFieldCreator = (text) => ({
+    type: UPDATE_MESSAGE_FIELD,
+    text: text,
+});
 
 export default store;

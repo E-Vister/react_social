@@ -1,0 +1,16 @@
+.dialog_page {
+
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.back_button {
+  a {
+    color: #d2cce7;
+  }
+  margin-bottom: 3px;
+  padding-left: 5px;
+}
