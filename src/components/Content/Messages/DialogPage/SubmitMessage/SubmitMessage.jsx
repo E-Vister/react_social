@@ -12,7 +12,7 @@ const SubmitMessage = (props) => {
     }
 
     return (
-        <div className={scss.submit_message}>
+        <div className={scss.field}>
             <div>
                 <textarea onChange={onMessageFieldChange}
                           name="new_message_text_field"

@@ -5,7 +5,7 @@ const DialogItem = (props) => {
     let path = `/messages/${props.id}`;
 
     return (
-        <div className={scss.dialog_item}>
+        <div className={scss.container}>
             <NavLink to={path}>
                 <img className={scss.avatar} src={props.avatar} alt="avatar"/>
                 {props.username}

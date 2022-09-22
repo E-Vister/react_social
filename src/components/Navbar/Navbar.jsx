@@ -4,7 +4,7 @@ import LastFriends from "./LastFriends/LastFriends";
 
 const Navbar = (props) => {
     return (
-        <nav className={scss.navbar}>
+        <nav className={scss.container}>
             <div className={scss.item}>
                 <NavLink to="/profile"
                          className={isActive()}>Profile</NavLink>

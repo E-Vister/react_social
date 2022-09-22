@@ -8,7 +8,7 @@ import {Route, Routes} from "react-router-dom";
 
 const Content = (props) => {
     return (
-        <div className={scss.content}>
+        <div className={scss.container}>
             <Routes>
                 <Route path={'/*'}
                        element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
