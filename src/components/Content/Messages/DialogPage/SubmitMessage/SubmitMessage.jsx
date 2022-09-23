@@ -1,14 +1,13 @@
 import scss from './SubmitMessage.module.scss';
 import React from "react";
-import {sendMessageCreator, updateMessageFieldCreator} from "../../../../../redux/dialogs-reducer";
 
 const SubmitMessage = (props) => {
     const sendMessage = () => {
-        props.dispatch(sendMessageCreator(props.dialogId));
+        props.sendMessage(props.dialogId);
     }
 
     const onMessageFieldChange = (event) => {
-        props.dispatch(updateMessageFieldCreator(event.target.value));
+        props.onMessageFieldChange(event.target.value);
     }
 
     return (

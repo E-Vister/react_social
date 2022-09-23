@@ -1,8 +1,8 @@
 import scss from './DialogPage.module.scss';
 import React from "react";
-import SubmitMessage from "./SubmitMessage/SubmitMessage";
 import Message from "./Message/Message";
 import {NavLink} from "react-router-dom";
+import SubmitMessageContainer from "./SubmitMessage/SubmitMessageсContainer";
 
 const DialogPage = (props) => {
     let messagesElements = props.messages.map(item => <Message id={item.id} messageText={item.messageText}/>);
@@ -13,7 +13,7 @@ const DialogPage = (props) => {
             <div className={scss.messages}>
                 {messagesElements}
             </div>
-            <SubmitMessage newMessageTextField={props.newMessageTextField} dispatch={props.dispatch}
+            <SubmitMessageContainer newMessageTextField={props.newMessageTextField} dispatch={props.dispatch}
                            dialogId={props.id}/>
         </div>
     );
