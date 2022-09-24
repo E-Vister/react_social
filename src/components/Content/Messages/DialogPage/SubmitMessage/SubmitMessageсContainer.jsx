@@ -1,18 +1,26 @@
 import React from "react";
 import {sendMessageCreator, updateMessageFieldCreator} from "../../../../../redux/dialogs-reducer";
 import SubmitMessage from "./SubmitMessage";
+import {connect} from "react-redux";
 
-const SubmitMessageContainer = (props) => {
-    const sendMessage = (dialogId) => {
-        props.dispatch(sendMessageCreator(dialogId));
+let mapStateToProps = (state, props) => {
+    return {
+        newMessageTextField: state.dialogs.newMessageTextField,
+        dialogId: props.dialogId
     }
+};
 
-    const onMessageFieldChange = (text) => {
-        props.dispatch(updateMessageFieldCreator(text));
+let mapDispatchToProps = (dispatch) => {
+    return {
+        onMessageFieldChange: (text) => {
+            dispatch(updateMessageFieldCreator(text));
+        },
+        sendMessage: (dialogId) => {
+            dispatch(sendMessageCreator(dialogId));
+        }
     }
-
-    return (<SubmitMessage newMessageTextField={props.newMessageTextField} dialogId={props.id} sendMessage={sendMessage}
-                           onMessageFieldChange={onMessageFieldChange}/>);
 }
+
+const SubmitMessageContainer = connect(mapStateToProps, mapDispatchToProps)(SubmitMessage);
 
 export default SubmitMessageContainer;

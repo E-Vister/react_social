@@ -1,21 +1,21 @@
 import scss from './Content.module.scss';
 import Profile from "./Profile/Profile";
-import Messages from "./Messages/Messages";
 import Settings from "./Settings/Settings";
 import Music from "./Music/Music";
 import News from "./News/News";
 import {Route, Routes} from "react-router-dom";
+import MessagesContainer from "./Messages/MessagesContainer";
 
 const Content = (props) => {
     return (
         <div className={scss.container}>
             <Routes>
                 <Route path={'/*'}
-                       element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
+                       element={<Profile/>}/>
                 <Route path={'profile'}
-                       element={<Profile profile={props.state.profile} dispatch={props.dispatch}/>}/>
+                       element={<Profile/>}/>
                 <Route path={'/messages/*'}
-                       element={<Messages dialogs={props.state.dialogs} dispatch={props.dispatch}/>}/>
+                       element={<MessagesContainer/>}/>
                 <Route path={'news'} element={<News/>}/>
                 <Route path={'music'} element={<Music/>}/>
                 <Route path={'settings'} element={<Settings/>}/>

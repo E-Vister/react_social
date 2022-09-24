@@ -13,8 +13,7 @@ const DialogPage = (props) => {
             <div className={scss.messages}>
                 {messagesElements}
             </div>
-            <SubmitMessageContainer newMessageTextField={props.newMessageTextField} dispatch={props.dispatch}
-                           dialogId={props.id}/>
+            <SubmitMessageContainer dialogId={props.dialogId}/>
         </div>
     );
 }

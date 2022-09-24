@@ -1,18 +1,26 @@
 import React from "react";
 import {addPostCreator, updatePostFieldCreator} from "../../../../../redux/profile-reducer";
 import SubmitPost from "./SubmitPost";
+import {connect} from "react-redux";
 
-
-const SubmitPostContainer = (props) => {
-    const addPost = () => {
-        props.dispatch(addPostCreator());
+let mapStateToProps = (state) => {
+    return {
+        newPostTextField: state.profile.newPostTextField
     }
+};
 
-    const onPostChange = (text) => {
-        props.dispatch(updatePostFieldCreator(text));
-    }
+let mapDispatchToProps = (dispatch) => {
+  return {
+      addPost: () => {
+          dispatch(addPostCreator());
+      },
+      onPostChange: (text) => {
+          dispatch(updatePostFieldCreator(text));
+      }
+  }
+};
 
-    return (<SubmitPost addPost={addPost} onPostChange={onPostChange} newPostTextField={props.newPostTextField}/>);
-}
+
+const SubmitPostContainer = connect(mapStateToProps, mapDispatchToProps)(SubmitPost);
 
 export default SubmitPostContainer;

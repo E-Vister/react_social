@@ -8,8 +8,8 @@ const App = (props) => {
     return (
         <div className="App">
             <Header/>
-            <Navbar navbar={props.state.navbar}/>
-            <Content state={props.state} dispatch={props.dispatch}/>
+            <Navbar/>
+            <Content/>
         </div>
     );
 }

@@ -30,7 +30,7 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case ADD_POST: {
             let text = state.newPostTextField;
 
             if (text === '') return;
@@ -42,12 +42,18 @@ const profileReducer = (state = initialState, action) => {
                 likeCount: 0
             }
 
-            state.posts.push(newPost);
-            state.newPostTextField = '';
-            return state;
-        case UPDATE_POST_FIELD:
-            state.newPostTextField = action.text;
-            return state;
+            let stateClone = {...state};
+            stateClone.posts = [...state.posts];
+
+            stateClone.posts.push(newPost);
+            stateClone.newPostTextField = '';
+            return stateClone;
+        }
+        case UPDATE_POST_FIELD: {
+            let stateClone = {...state};
+            stateClone.newPostTextField = action.text;
+            return stateClone;
+        }
         default:
             return state;
     }

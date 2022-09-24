@@ -5,38 +5,38 @@ const SEND_MESSAGE = 'SEND-MESSAGE';
 const UPDATE_MESSAGE_FIELD = 'UPDATE-MESSAGE-FIELD';
 
 let initialState = {
-        dialogsArray: [
-            {
-                id: 0, author: users[1], messages: [
-                    {
-                        id: 1,
-                        messageText: 'Morning'
-                    },
-                    {
-                        id: 2,
-                        messageText: 'What about our business?'
-                    }
-                ]
-            },
-            {
-                id: 1, author: users[2], messages: []
-            },
-            {
-                id: 2, author: users[3], messages: []
-            },
-            {
-                id: 3, author: users[4], messages: []
-            },
-            {
-                id: 4, author: users[5], messages: []
-            },
-        ],
-        newMessageTextField: '',
+    dialogsArray: [
+        {
+            id: 0, author: users[1], messages: [
+                {
+                    id: 1,
+                    messageText: 'Morning'
+                },
+                {
+                    id: 2,
+                    messageText: 'What about our business?'
+                }
+            ]
+        },
+        {
+            id: 1, author: users[2], messages: []
+        },
+        {
+            id: 2, author: users[3], messages: []
+        },
+        {
+            id: 3, author: users[4], messages: []
+        },
+        {
+            id: 4, author: users[5], messages: []
+        },
+    ],
+    newMessageTextField: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEND_MESSAGE:
+        case SEND_MESSAGE: {
             let text = state.newMessageTextField;
 
             if (text === '') return;
@@ -46,12 +46,20 @@ const dialogsReducer = (state = initialState, action) => {
                 messageText: text
             }
 
-            state.dialogsArray[action.dialogId].messages.push(newMessage);
-            state.newMessageTextField = '';
-            return state;
-        case UPDATE_MESSAGE_FIELD:
-            state.newMessageTextField = action.text;
-            return state;
+            let stateClone = {...state};
+            stateClone.newMessageTextField = state.newMessageTextField
+            stateClone.dialogsArray[action.dialogId].messages = [...state.dialogsArray[action.dialogId].messages];
+
+            stateClone.dialogsArray[action.dialogId].messages.push(newMessage);
+            stateClone.newMessageTextField = '';
+            return stateClone;
+        }
+        case UPDATE_MESSAGE_FIELD: {
+            let stateClone = {...state};
+
+            stateClone.newMessageTextField = action.text;
+            return stateClone;
+        }
         default:
             return state;
     }

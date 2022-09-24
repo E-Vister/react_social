@@ -1,6 +1,6 @@
 import scss from "./ProfileInfo.module.scss";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
     return (
         <div className={scss.profile_info}>
             <div className={scss.banner}>

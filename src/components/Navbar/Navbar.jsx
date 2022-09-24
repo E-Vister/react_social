@@ -1,6 +1,6 @@
 import scss from './Navbar.module.scss';
 import {NavLink} from "react-router-dom";
-import LastFriends from "./LastFriends/LastFriends";
+import LastFriendsContainer from "./LastFriends/LastFriendsContainer";
 
 const Navbar = (props) => {
     return (
@@ -28,9 +28,9 @@ const Navbar = (props) => {
             <br/>
             <div className={`${scss.item} ${scss.friends}`}>
                 <NavLink to='/friends'
-                    className={isActive()}>Friends</NavLink>
+                         className={isActive()}>Friends</NavLink>
             </div>
-            <LastFriends friends={props.navbar.friends} />
+            <LastFriendsContainer/>
         </nav>
     );
 }
