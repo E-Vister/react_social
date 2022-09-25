@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import SubmitMessageContainer from "./SubmitMessage/SubmitMessageсContainer";
 
 const DialogPage = (props) => {
-    let messagesElements = props.messages.map(item => <Message id={item.id} messageText={item.messageText}/>);
+    let messagesElements = props.messages.map(item => <Message id={item.id} key={item.id} messageText={item.messageText}/>);
 
     return (
         <div className={scss.dialog_page}>

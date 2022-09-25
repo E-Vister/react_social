@@ -28,7 +28,7 @@ let initialState = {
             id: 3, author: users[4], messages: []
         },
         {
-            id: 4, author: users[5], messages: []
+            id: 4, author: users[5],messages: []
         },
     ],
     newMessageTextField: '',
@@ -46,19 +46,18 @@ const dialogsReducer = (state = initialState, action) => {
                 messageText: text
             }
 
-            let stateClone = {...state};
-            stateClone.newMessageTextField = state.newMessageTextField
-            stateClone.dialogsArray[action.dialogId].messages = [...state.dialogsArray[action.dialogId].messages];
+            state.dialogsArray[action.dialogId].messages = [...state.dialogsArray[action.dialogId].messages, newMessage];
 
-            stateClone.dialogsArray[action.dialogId].messages.push(newMessage);
-            stateClone.newMessageTextField = '';
-            return stateClone;
+            return {
+                ...state,
+                newMessageTextField: ''
+            }
         }
         case UPDATE_MESSAGE_FIELD: {
-            let stateClone = {...state};
-
-            stateClone.newMessageTextField = action.text;
-            return stateClone;
+            return  {
+                ...state,
+                newMessageTextField: action.text
+            }
         }
         default:
             return state;

@@ -42,17 +42,17 @@ const profileReducer = (state = initialState, action) => {
                 likeCount: 0
             }
 
-            let stateClone = {...state};
-            stateClone.posts = [...state.posts];
-
-            stateClone.posts.push(newPost);
-            stateClone.newPostTextField = '';
-            return stateClone;
+            return  {
+                ...state,
+                newPostTextField: '',
+                posts: [...state.posts, newPost],
+            }
         }
         case UPDATE_POST_FIELD: {
-            let stateClone = {...state};
-            stateClone.newPostTextField = action.text;
-            return stateClone;
+            return  {
+                ...state,
+                newPostTextField: action.text,
+            }
         }
         default:
             return state;

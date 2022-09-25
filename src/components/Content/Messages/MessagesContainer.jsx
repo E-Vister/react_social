@@ -10,14 +10,16 @@ let mapStateToProps = (state) => {
             return <DialogItem
                 username={`${item.author.name} ${item.author.surname}`}
                 avatar={item.author.avatar}
+                key={item.id}
                 id={item.id}/>
         }),
         dialogsPage: state.dialogs.dialogsArray.map((item) => {
             return <Route path={`/${item.id}/`}
-                   element={<DialogPage
-                       dialogId={item.id}
-                       messages={item.messages}
-                       newMessageTextField={state.dialogs.newMessageTextField}/>}/>
+                          element={<DialogPage
+                              dialogId={item.id}
+                              messages={item.messages}
+                              key={item.id}
+                              newMessageTextField={state.dialogs.newMessageTextField}/>}/>
         }),
 
     }

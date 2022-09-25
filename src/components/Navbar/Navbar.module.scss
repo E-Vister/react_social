@@ -1,7 +1,8 @@
 .container {
-  grid-area: navbar;
+  grid-area: 2 / 3 / 4 / 5;
   background-color: #c2c248;
   padding: 10px;
+  font-size: 1.2em;
 }
 
 .item {

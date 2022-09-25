@@ -9,12 +9,8 @@ a {
 
 .App {
   display: grid;
-
-  grid-template-areas:
-    "header header"
-    "navbar content";
-
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
 }
