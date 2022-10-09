@@ -1,18 +1,9 @@
-import users from "./users";
-
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 
 let initialState = {
     usersArray: [
-        users[0],
-        users[1],
-        users[2],
-        users[3],
-        users[4],
-        users[5],
-        users[6],
     ],
 }
 
@@ -41,7 +32,7 @@ const usersReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                usersArray: [...state.usersArray, action.usersArray],
+                usersArray: action.usersArray,
             }
         }
         default:
