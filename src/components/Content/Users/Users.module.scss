@@ -1,3 +1,19 @@
 .content {
 
 }
+
+.pagination {
+  color: white;
+  text-align: right;
+  margin-right: 4px;
+
+  span {
+    margin-left: 4px;
+    cursor: pointer;
+    font-size: 1.05em;
+  }
+}
+
+.selectedPage {
+  color: black;
+}
