@@ -1,6 +1,42 @@
 import {connect} from "react-redux";
-import Users from "./Users";
 import {followAC, unfollowAC, setUsersAC, setTotalUsersCountAC, setCurrentPageAC} from "../../../redux/users-reducer";
+import axios from "axios";
+import Users from "./Users";
+import React from 'react';
+
+class UsersAPIContainer extends React.Component {
+    componentDidMount() {
+        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
+
+        axios.get(url).then(res => {
+                this.props.setUsers(res.data.items);
+                this.props.setTotalUsersCount(res.data.totalUsersCount);
+            }
+        );
+    }
+
+    onPageChanged = (pageNumber) => {
+        this.props.setCurrentPage(pageNumber);
+
+        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
+
+        axios.get(url).then(res => {
+                this.props.setUsers(res.data.items);
+            }
+        );
+    }
+
+    render() {
+        return <Users onPageChanged={this.onPageChanged}
+                      currentPage={this.props.currentPage}
+                      pageSize={this.props.pageSize}
+                      totalUsersCount={this.props.totalUsersCount}
+                      follow={this.props.follow}
+                      unfollow={this.props.unfollow}
+                      usersArray={this.props.usersArray}
+                      cityRenderer={this.props.cityRenderer}/>
+    }
+}
 
 let mapStateToProps = (state) => {
     let cityRenderer = (location) => {
@@ -36,6 +72,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
 
 export default UsersContainer;

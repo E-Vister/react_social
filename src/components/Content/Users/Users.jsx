@@ -1,60 +1,36 @@
 import scss from './Users.module.scss';
 import UserItem from "./UserItem/UserItem";
-import axios from "axios";
 import React from 'react';
 
-class Users extends React.Component {
-    componentDidMount() {
-        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
+const Users = (props) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
 
-        axios.get(url).then(res => {
-                this.props.setUsers(res.data.items);
-                this.props.setTotalUsersCount(res.data.totalUsersCount);
-            }
-        );
+    for (let i = 1; i <= pagesCount; i++) {
+        pages = [...pages, i];
     }
 
-    onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
+    let pagesElements = pages.map(p => {
+        return <span className={props.currentPage === p && scss.selectedPage}
+                     onClick={() => props.onPageChanged(p)}>{p}</span>
+    })
 
-        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
+    let usersElements = props.usersArray.map((item) => {
+        return <UserItem
+            cityRenderer={props.cityRenderer}
+            user={item}
+            key={item.id}
+            follow={props.follow}
+            unfollow={props.unfollow}
+        />
+    });
 
-        axios.get(url).then(res => {
-                this.props.setUsers(res.data.items);
-            }
-        );
-    }
-
-    render() {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        let pages = [];
-
-        for (let i = 1; i <= pagesCount; i++) {
-            pages = [...pages, i];
-        }
-
-        let pagesElements = pages.map(p => {
-            return <span className={this.props.currentPage === p && scss.selectedPage}
-                         onClick={() => this.onPageChanged(p)}>{p}</span>
-        })
-
-        let usersElements = this.props.usersArray.map((item) => {
-            return <UserItem
-                cityRenderer={this.props.cityRenderer}
-                user={item}
-                key={item.id}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-            />
-        });
-
-        return (
-            <div className={scss.content}>
-                <div className={scss.pagination}>{pagesElements}</div>
-                {usersElements}
-            </div>
-        );
-    }
+    return (
+        <div className={scss.content}>
+            <div className={scss.pagination}>{pagesElements}</div>
+            {usersElements}
+        </div>
+    );
 }
 
 export default Users;
