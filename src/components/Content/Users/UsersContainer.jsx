@@ -1,14 +1,24 @@
 import {connect} from "react-redux";
-import {followAC, unfollowAC, setUsersAC, setTotalUsersCountAC, setCurrentPageAC} from "../../../redux/users-reducer";
+import {
+    followAC,
+    unfollowAC,
+    setUsersAC,
+    setTotalUsersCountAC,
+    setCurrentPageAC,
+    switchIsFetchingStatusAC
+} from "../../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
 import React from 'react';
 
 class UsersAPIContainer extends React.Component {
     componentDidMount() {
+        this.props.switchIsFetchingStatus(true);
+
         let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
 
         axios.get(url).then(res => {
+                this.props.switchIsFetchingStatus(false);
                 this.props.setUsers(res.data.items);
                 this.props.setTotalUsersCount(res.data.totalUsersCount);
             }
@@ -17,10 +27,12 @@ class UsersAPIContainer extends React.Component {
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
+        this.props.switchIsFetchingStatus(true);
 
         let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
 
         axios.get(url).then(res => {
+                this.props.switchIsFetchingStatus(false);
                 this.props.setUsers(res.data.items);
             }
         );
@@ -34,7 +46,8 @@ class UsersAPIContainer extends React.Component {
                       follow={this.props.follow}
                       unfollow={this.props.unfollow}
                       usersArray={this.props.usersArray}
-                      cityRenderer={this.props.cityRenderer}/>
+                      cityRenderer={this.props.cityRenderer}
+                      isFetching={this.props.isFetching}/>
     }
 }
 
@@ -48,7 +61,8 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.users.totalUsersCount,
         pageSize: state.users.pageSize,
         currentPage: state.users.currentPage,
-        cityRenderer: cityRenderer
+        cityRenderer: cityRenderer,
+        isFetching: state.users.isFetching,
     }
 };
 
@@ -69,6 +83,9 @@ let mapDispatchToProps = (dispatch) => {
         setCurrentPage: (pageNumber) => {
             dispatch(setCurrentPageAC(pageNumber));
         },
+        switchIsFetchingStatus: (status) => {
+            dispatch(switchIsFetchingStatusAC(status));
+        }
     }
 }
 

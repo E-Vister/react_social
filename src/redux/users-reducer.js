@@ -3,6 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET-USERS';
 const SET_TOTAL_USERS_COUNT = 'TOTAL-USERS-COUNT';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+const SWITCH_ISFETCHING_STATUS = 'SWITCH-ISFETCHING-STATUS';
 
 let initialState = {
     usersArray: [
@@ -10,6 +11,7 @@ let initialState = {
     totalUsersCount: 0,
     pageSize: 4,
     currentPage: 1,
+    isFetching: false,
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -56,6 +58,14 @@ const usersReducer = (state = initialState, action) => {
                 currentPage: action.pageNumber,
             }
         }
+        case SWITCH_ISFETCHING_STATUS: {
+            if (action.status === undefined) return;
+
+            return {
+                ...state,
+                isFetching: action.status,
+            }
+        }
         default:
             return state;
     }
@@ -93,6 +103,13 @@ export const setCurrentPageAC = (pageNumber) => {
     return {
         type: SET_CURRENT_PAGE,
         pageNumber: pageNumber
+    }
+}
+
+export const switchIsFetchingStatusAC = (status) => {
+    return {
+        type: SWITCH_ISFETCHING_STATUS,
+        status: status
     }
 }
 

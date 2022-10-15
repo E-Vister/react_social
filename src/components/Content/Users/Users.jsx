@@ -24,11 +24,11 @@ const Users = (props) => {
             unfollow={props.unfollow}
         />
     });
-
     return (
         <div className={scss.content}>
             <div className={scss.pagination}>{pagesElements}</div>
-            {usersElements}
+            {props.isFetching ?
+                <img className={scss.preloader} src={'/preloader.svg'} alt={'preloader'}/> : usersElements}
         </div>
     );
 }
