@@ -14,7 +14,7 @@ let initialState = {
         location: {
             city: '',
             state: '',
-            county: '',
+            country: '',
         },
     },
     posts: [],
@@ -68,7 +68,7 @@ const profileReducer = (state = initialState, action) => {
                     location: {
                         city: action.location.city,
                         state: action.location.state,
-                        county: action.location.county,
+                        country: action.location.country,
                     },
                 },
             }

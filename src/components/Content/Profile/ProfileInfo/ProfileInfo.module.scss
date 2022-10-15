@@ -1,9 +1,4 @@
 .profile_info {
-  img {
-    width: 100px;
-    border-radius: 100%;
-  }
-
   .wrapper {
     margin-left: 18%;
   }
@@ -15,15 +10,21 @@
   .status {
     font-weight: normal;
   }
+
+  .location {
+    font-weight: normal;
+    font-size: 0.9em;
+  }
 }
 
 .img_wrapper {
   position: relative;
 
   .avatar {
+    border-radius: 100%;
     width: 15%;
     position: absolute;
-    top: 70%;
+    top: 72%;
     left: 10px;
 
     border: 2px solid lightpink;

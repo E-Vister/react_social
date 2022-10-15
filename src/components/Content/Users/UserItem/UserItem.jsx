@@ -1,4 +1,5 @@
 import scss from './UserItem.module.scss';
+import {NavLink} from "react-router-dom";
 
 const UserItem = (props) => {
     const unfollow = () => {
@@ -13,7 +14,8 @@ const UserItem = (props) => {
         <div className={scss.content}>
             <div className={scss.wrapper}>
                 <div className={scss.avatar}>
-                    <img src={props.user.avatar} alt="user_avatar"/>
+                    <NavLink to={`/profile/${props.user.id}`}><img src={props.user.avatar}
+                                                                    alt="user_avatar"/></NavLink>
                 </div>
                 <div className={scss.controls}>
                     <p>

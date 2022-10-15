@@ -13,7 +13,7 @@ const Content = (props) => {
             <Routes>
                 <Route path={'/*'}
                        element={<ProfileContainer/>}/>
-                <Route path={'/profile/'}
+                <Route path={'/profile/:userId'}
                        element={<ProfileContainer/>}/>
                 <Route path={'/messages/*'}
                        element={<MessagesContainer/>}/>

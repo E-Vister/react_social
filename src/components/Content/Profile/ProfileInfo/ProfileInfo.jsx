@@ -14,8 +14,15 @@ const ProfileInfo = (props) => {
                     src={props.profileInfo.avatar}
                     alt="avatar"/>
             </div>
-            <div className={`${scss.wrapper} ${scss.fullname}`}>{props.profileInfo.fullname}</div>
-            <div className={`${scss.wrapper} ${scss.status}`}>{props.profileInfo.status}</div>
+            <div className={`${scss.wrapper} ${scss.fullname}`}>
+                {props.profileInfo.fullname}
+            </div>
+            <div className={`${scss.wrapper} ${scss.status}`}>
+                {props.profileInfo.status}
+            </div>
+            <div className={`${scss.wrapper} ${scss.location}`}>
+                {`${props.profileInfo.location.city}, ${props.profileInfo.location.country}`}
+            </div>
         </div>
     );
 }
