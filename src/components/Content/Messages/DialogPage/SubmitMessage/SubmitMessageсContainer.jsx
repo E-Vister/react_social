@@ -1,7 +1,6 @@
-import React from "react";
-import {sendMessageCreator, updateMessageFieldCreator} from "../../../../../redux/dialogs-reducer";
 import SubmitMessage from "./SubmitMessage";
 import {connect} from "react-redux";
+import {sendMessage, updateMessageField} from "../../../../../redux/dialogs-reducer";
 
 let mapStateToProps = (state, props) => {
     return {
@@ -10,17 +9,9 @@ let mapStateToProps = (state, props) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        onMessageFieldChange: (text) => {
-            dispatch(updateMessageFieldCreator(text));
-        },
-        sendMessage: (dialogId) => {
-            dispatch(sendMessageCreator(dialogId));
-        }
-    }
-}
-
-const SubmitMessageContainer = connect(mapStateToProps, mapDispatchToProps)(SubmitMessage);
+const SubmitMessageContainer = connect(mapStateToProps, {
+    updateMessageField,
+    sendMessage,
+})(SubmitMessage);
 
 export default SubmitMessageContainer;

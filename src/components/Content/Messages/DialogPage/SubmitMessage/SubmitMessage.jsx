@@ -7,7 +7,7 @@ const SubmitMessage = (props) => {
     }
 
     const onMessageFieldChange = (event) => {
-        props.onMessageFieldChange(event.target.value);
+        props.updateMessageField(event.target.value);
     }
 
     return (

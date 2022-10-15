@@ -1,11 +1,39 @@
 .profile_info {
   img {
     width: 100px;
+    border-radius: 100%;
+  }
+
+  .wrapper {
+    margin-left: 18%;
+  }
+
+  .fullname {
+
+  }
+
+  .status {
+    font-weight: normal;
+  }
+}
+
+.img_wrapper {
+  position: relative;
+
+  .avatar {
+    width: 15%;
+    position: absolute;
+    top: 70%;
+    left: 10px;
+
+    border: 2px solid lightpink;
+    background-color: white;
   }
 }
 
 .banner {
   img {
-    width: 400px;
+    width: 100%;
+    border-radius: 5px;
   }
 }

@@ -1,15 +1,15 @@
 import {connect} from "react-redux";
-import {
-    followAC,
-    unfollowAC,
-    setUsersAC,
-    setTotalUsersCountAC,
-    setCurrentPageAC,
-    switchIsFetchingStatusAC
-} from "../../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
 import React from 'react';
+import {
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    switchIsFetchingStatus,
+    unfollow
+} from "../../../redux/users-reducer";
 
 class UsersAPIContainer extends React.Component {
     componentDidMount() {
@@ -20,7 +20,7 @@ class UsersAPIContainer extends React.Component {
         axios.get(url).then(res => {
                 this.props.switchIsFetchingStatus(false);
                 this.props.setUsers(res.data.items);
-                this.props.setTotalUsersCount(res.data.totalUsersCount);
+                this.props.setTotalUsersCount(res.data.totalCount);
             }
         );
     }
@@ -66,29 +66,14 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setTotalUsersCount: (count) => {
-            dispatch(setTotalUsersCountAC(count));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        switchIsFetchingStatus: (status) => {
-            dispatch(switchIsFetchingStatusAC(status));
-        }
-    }
-}
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer);
+const UsersContainer = connect(mapStateToProps,
+    {
+        follow,
+        unfollow,
+        setUsers,
+        setTotalUsersCount,
+        setCurrentPage,
+        switchIsFetchingStatus
+    })(UsersAPIContainer);
 
 export default UsersContainer;

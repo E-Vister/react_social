@@ -8,7 +8,7 @@ const SubmitPost = (props) => {
     }
 
     const onPostChange = (event) => {
-        props.onPostChange(event.target.value);
+        props.updatePostField(event.target.value);
     }
 
     return (

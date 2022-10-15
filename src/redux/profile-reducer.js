@@ -1,30 +1,23 @@
 import users from "./users";
 
-
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
+const SET_POSTS = 'SET-POSTS';
+const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 
 let initialState = {
-    posts: [
-        {
-            id: 1,
-            author: users[1],
-            message: `Hey. How are you feeling today?`,
-            likeCount: 20
+    profileInfo: {
+        fullname: '',
+        banner: '',
+        avatar: '',
+        status: '',
+        location: {
+            city: '',
+            state: '',
+            county: '',
         },
-        {
-            id: 2,
-            author: users[6],
-            message: `I finished my album. Go check it out!`,
-            likeCount: 34
-        },
-        {
-            id: 3,
-            author: users[3],
-            message: `I'm going on a picnic. Do you wanna join?`,
-            likeCount: 1
-        },
-    ],
+    },
+    posts: [],
     newPostTextField: '',
 }
 
@@ -37,21 +30,47 @@ const profileReducer = (state = initialState, action) => {
 
             let newPost = {
                 id: 5,
-                author: users[0],
+                author: {
+                    name: users[0].name,
+                    surname: users[0].surname,
+                    avatar: users[0].avatar
+                },
                 message: text,
                 likeCount: 0
             }
 
-            return  {
+            return {
                 ...state,
                 newPostTextField: '',
                 posts: [...state.posts, newPost],
             }
         }
         case UPDATE_POST_FIELD: {
-            return  {
+            return {
                 ...state,
                 newPostTextField: action.text,
+            }
+        }
+        case SET_POSTS: {
+            return {
+                ...state,
+                posts: action.posts,
+            }
+        }
+        case SET_PROFILE_INFO: {
+            return {
+                ...state,
+                profileInfo: {
+                    fullname: action.fullname,
+                    banner: action.banner,
+                    avatar: action.avatar,
+                    status: action.status,
+                    location: {
+                        city: action.location.city,
+                        state: action.location.state,
+                        county: action.location.county,
+                    },
+                },
             }
         }
         default:
@@ -59,13 +78,27 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostCreator = () => ({
+export const addPost = () => ({
     type: ADD_POST
 });
 
-export const updatePostFieldCreator = (text) => ({
+export const updatePostField = (text) => ({
     type: UPDATE_POST_FIELD,
     text: text,
+});
+
+export const setPosts = (posts) => ({
+    type: SET_POSTS,
+    posts: posts,
+});
+
+export const setProfileInfo = (profileInfo) => ({
+    type: SET_PROFILE_INFO,
+    fullname: `${profileInfo.name} ${profileInfo.surname}`,
+    avatar: profileInfo.avatar,
+    banner: profileInfo.banner,
+    status: profileInfo.status,
+    location: profileInfo.location,
 });
 
 export default profileReducer;
