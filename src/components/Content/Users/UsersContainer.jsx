@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import axios from "axios";
 import Users from "./Users";
 import React from 'react';
+import {getUsers} from "../../../api/api";
 import {
     follow,
     setCurrentPage,
@@ -15,12 +15,10 @@ class UsersAPIContainer extends React.Component {
     componentDidMount() {
         this.props.switchIsFetchingStatus(true);
 
-        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`;
-
-        axios.get(url).then(res => {
+        getUsers(this.props.pageSize, this.props.currentPage).then(data => {
                 this.props.switchIsFetchingStatus(false);
-                this.props.setUsers(res.data.items);
-                this.props.setTotalUsersCount(res.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
             }
         );
     }
@@ -29,11 +27,9 @@ class UsersAPIContainer extends React.Component {
         this.props.setCurrentPage(pageNumber);
         this.props.switchIsFetchingStatus(true);
 
-        let url = `http://localhost:5000/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`;
-
-        axios.get(url).then(res => {
+        getUsers(this.props.pageSize, pageNumber).then(data => {
                 this.props.switchIsFetchingStatus(false);
-                this.props.setUsers(res.data.items);
+                this.props.setUsers(data.items);
             }
         );
     }

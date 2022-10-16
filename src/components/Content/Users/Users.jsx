@@ -1,6 +1,7 @@
 import scss from './Users.module.scss';
 import UserItem from "./UserItem/UserItem";
 import React from 'react';
+import Preloader from "../../common/Preloader";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -28,7 +29,7 @@ const Users = (props) => {
         <div className={scss.content}>
             <div className={scss.pagination}>{pagesElements}</div>
             {props.isFetching ?
-                <img className={scss.preloader} src={'/preloader.svg'} alt={'preloader'}/> : usersElements}
+                <Preloader/> : usersElements}
         </div>
     );
 }

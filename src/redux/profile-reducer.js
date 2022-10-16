@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
 const SET_POSTS = 'SET-POSTS';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
+const SWITCH_ISFETCHING_STATUS = 'SWITCH-ISFETCHING-STATUS';
 
 let initialState = {
     profileInfo: {
@@ -19,6 +20,7 @@ let initialState = {
     },
     posts: [],
     newPostTextField: '',
+    isFetching: false,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -73,6 +75,14 @@ const profileReducer = (state = initialState, action) => {
                 },
             }
         }
+        case SWITCH_ISFETCHING_STATUS: {
+            if (action.status === undefined) return;
+
+            return {
+                ...state,
+                isFetching: action.status,
+            }
+        }
         default:
             return state;
     }
@@ -100,5 +110,12 @@ export const setProfileInfo = (profileInfo) => ({
     status: profileInfo.status,
     location: profileInfo.location,
 });
+
+export const switchIsFetchingStatus = (status) => {
+    return {
+        type: SWITCH_ISFETCHING_STATUS,
+        status: status
+    }
+}
 
 export default profileReducer;

@@ -1,32 +1,31 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import axios from "axios";
-import {setPosts, setProfileInfo} from "../../../redux/profile-reducer";
+import {getProfile} from "../../../api/api";
+import {setPosts, setProfileInfo, switchIsFetchingStatus} from "../../../redux/profile-reducer";
 import {
     useLocation,
     useNavigate,
     useParams
 } from "react-router-dom";
-import {switchIsFetchingStatus} from "../../../redux/users-reducer";
 
 class ProfileAPIContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.router.params.userId;
-        let url = `http://localhost:5000/api/1.0/profile/${userId ? userId : 0}`;
-
         this.props.switchIsFetchingStatus(true);
+        let userId = this.props.router.params.userId;
 
-        axios.get(url).then(res => {
+        getProfile(userId).then(data => {
             this.props.switchIsFetchingStatus(false);
-            this.props.setPosts(res.data.posts);
-            this.props.setProfileInfo(res.data.items);
+            this.props.setPosts(data.posts);
+            this.props.setProfileInfo(data.items);
         })
     }
 
     render() {
-        return <Profile posts={this.props.posts} newPostTextField={this.props.newPostTextField}
-                        profileInfo={this.props.profileInfo}/>
+        return <Profile posts={this.props.posts}
+                        newPostTextField={this.props.newPostTextField}
+                        profileInfo={this.props.profileInfo}
+                        isFetching={this.props.isFetching}/>
     }
 }
 
@@ -35,6 +34,7 @@ let mapStateToProps = (state) => {
         posts: state.profile.posts,
         newPostTextField: state.profile.newPostTextField,
         profileInfo: state.profile.profileInfo,
+        isFetching: state.profile.isFetching,
     }
 }
 
@@ -47,7 +47,7 @@ const withRouter = (Component) => {
         return (
             <Component
                 {...props}
-                router={{ location, navigate, params }}
+                router={{location, navigate, params}}
             />
         );
     }

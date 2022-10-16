@@ -12,6 +12,8 @@ const Content = (props) => {
         <div className={scss.container}>
             <Routes>
                 <Route path={'/*'}
+                       element={<UsersContainer/>}/>
+                <Route path={'/profile/'}
                        element={<ProfileContainer/>}/>
                 <Route path={'/profile/:userId'}
                        element={<ProfileContainer/>}/>

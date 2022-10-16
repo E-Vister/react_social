@@ -1,13 +1,13 @@
 import './App.scss';
-import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Content from "./components/Content/Content";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 
 const App = (props) => {
     return (
         <div className="App">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <Content/>
         </div>

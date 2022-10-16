@@ -1,13 +1,22 @@
 import scss from './UserItem.module.scss';
 import {NavLink} from "react-router-dom";
+import {deleteFollow, postFollow} from "../../../../api/api";
 
 const UserItem = (props) => {
     const unfollow = () => {
-        props.unfollow(props.user.id);
+        deleteFollow(props.user.id).then(data => {
+            if (data.resultCode === 0) {
+                props.unfollow(props.user.id);
+            }
+        });
     }
 
     const follow = () => {
-        props.follow(props.user.id);
+        postFollow(props.user.id).then(data => {
+            if (data.resultCode === 0) {
+                props.follow(props.user.id);
+            }
+        });
     }
 
     return (
@@ -15,12 +24,14 @@ const UserItem = (props) => {
             <div className={scss.wrapper}>
                 <div className={scss.avatar}>
                     <NavLink to={`/profile/${props.user.id}`}><img src={props.user.avatar}
-                                                                    alt="user_avatar"/></NavLink>
+                                                                   alt="user_avatar"/></NavLink>
                 </div>
                 <div className={scss.controls}>
                     <p>
-                        {(props.user.isFollowed) ? <button onClick={unfollow}>Unfollow</button> :
-                            <button onClick={follow}>Follow</button>}
+                        {(props.user.isFollowed)
+                            ? <button onClick={unfollow}>Unfollow</button>
+                            : <button onClick={follow}>Follow</button>
+                        }
                     </p>
                 </div>
             </div>
