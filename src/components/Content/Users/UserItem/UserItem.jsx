@@ -4,18 +4,22 @@ import {deleteFollow, postFollow} from "../../../../api/api";
 
 const UserItem = (props) => {
     const unfollow = () => {
+        props.toggleFollowingProgress(true, props.user.id);
         deleteFollow(props.user.id).then(data => {
             if (data.resultCode === 0) {
                 props.unfollow(props.user.id);
             }
+            props.toggleFollowingProgress(false, props.user.id);
         });
     }
 
     const follow = () => {
+        props.toggleFollowingProgress(true, props.user.id);
         postFollow(props.user.id).then(data => {
             if (data.resultCode === 0) {
                 props.follow(props.user.id);
             }
+            props.toggleFollowingProgress(false, props.user.id);
         });
     }
 
@@ -29,8 +33,10 @@ const UserItem = (props) => {
                 <div className={scss.controls}>
                     <p>
                         {(props.user.isFollowed)
-                            ? <button onClick={unfollow}>Unfollow</button>
-                            : <button onClick={follow}>Follow</button>
+                            ? <button disabled={props.followingInProgress.some(id => id === props.user.id)}
+                                      onClick={unfollow}>Unfollow</button>
+                            : <button disabled={props.followingInProgress.some(id => id === props.user.id)}
+                                      onClick={follow}>Follow</button>
                         }
                     </p>
                 </div>
