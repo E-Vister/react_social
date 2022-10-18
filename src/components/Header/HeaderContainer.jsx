@@ -22,8 +22,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const HeaderContainer = connect(mapStateToProps, {
-    getUserData,
-})(HeaderAPIContainer);
+const HeaderContainer = connect(mapStateToProps, {getUserData})(HeaderAPIContainer);
 
 export default HeaderContainer;

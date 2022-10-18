@@ -6,6 +6,7 @@ import News from "./News/News";
 import UsersContainer from "./Users/UsersContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import LoginContainer from "./Login/LoginContainer";
 
 const Content = (props) => {
     return (
@@ -27,6 +28,8 @@ const Content = (props) => {
                        element={<Music/>}/>
                 <Route path={'/settings/'}
                        element={<Settings/>}/>
+                <Route path={'/login/'}
+                       element={<LoginContainer/>}/>
             </Routes>
 
         </div>

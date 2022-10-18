@@ -21,7 +21,7 @@ let mapStateToProps = (state) => {
                               key={item.id}
                               newMessageTextField={state.dialogs.newMessageTextField}/>}/>
         }),
-
+        isAuth: state.auth.isAuth
     }
 };
 

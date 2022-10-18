@@ -4,8 +4,11 @@ import Wall from "./Wall/Wall";
 import Preloader from "../../common/Preloader";
 
 const Profile = (props) => {
-    let profileElements = <div><ProfileInfo profileInfo={props.profileInfo}/>
-        <Wall posts={props.posts}/></div>
+    let profileElements =
+        <div>
+            <ProfileInfo profileInfo={props.profileInfo}/>
+            <Wall posts={props.posts}/>
+        </div>
 
     return (
         <div className={scss.profile}>

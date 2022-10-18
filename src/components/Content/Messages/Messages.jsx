@@ -1,7 +1,9 @@
 import scss from './Messages.module.scss';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 
 const Messages = (props) => {
+    if (!props.isAuth)  return <Navigate to={'/login'}/>
+
     return (
         <div className={scss.messages}>
             <Routes>

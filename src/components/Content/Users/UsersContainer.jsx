@@ -3,7 +3,7 @@ import Users from "./Users";
 import React from 'react';
 import {follow, getUsers, setCurrentPage, unfollow} from "../../../redux/users-reducer";
 
-class UsersAPIContainer extends React.Component {
+class UsersClassContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
@@ -50,6 +50,6 @@ const UsersContainer = connect(mapStateToProps,
         follow,
         unfollow,
         setCurrentPage,
-    })(UsersAPIContainer);
+    })(UsersClassContainer);
 
 export default UsersContainer;
