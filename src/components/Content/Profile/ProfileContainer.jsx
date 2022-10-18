@@ -1,8 +1,7 @@
 import React from 'react';
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getProfile} from "../../../api/api";
-import {setPosts, setProfileInfo, switchIsFetchingStatus} from "../../../redux/profile-reducer";
+import {getProfile, setPosts, setProfileInfo, switchIsFetchingStatus} from "../../../redux/profile-reducer";
 import {
     useLocation,
     useNavigate,
@@ -11,14 +10,8 @@ import {
 
 class ProfileAPIContainer extends React.Component {
     componentDidMount() {
-        this.props.switchIsFetchingStatus(true);
         let userId = this.props.router.params.userId;
-
-        getProfile(userId).then(data => {
-            this.props.switchIsFetchingStatus(false);
-            this.props.setPosts(data.posts);
-            this.props.setProfileInfo(data.items);
-        })
+        this.props.getProfile(userId);
     }
 
     render() {
@@ -56,9 +49,7 @@ const withRouter = (Component) => {
 }
 
 const ProfileContainer = connect(mapStateToProps, {
-    setPosts,
-    setProfileInfo,
-    switchIsFetchingStatus,
+    getProfile,
 })(withRouter(ProfileAPIContainer));
 
 export default ProfileContainer;

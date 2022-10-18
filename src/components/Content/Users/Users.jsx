@@ -15,24 +15,23 @@ const Users = (props) => {
         return <span className={props.currentPage === p ? scss.selectedPage : "false"}
                      key={props.usersArray[pages.indexOf(p)].id.toString()}
                      onClick={() => props.onPageChanged(p)}>{p}</span>
-    })
+    });
 
     let usersElements = props.usersArray.map((item) => {
         return <UserItem
-            cityRenderer={props.cityRenderer}
             user={item}
             key={item.id.toString()}
+            cityRenderer={props.cityRenderer}
             follow={props.follow}
             unfollow={props.unfollow}
             followingInProgress={props.followingInProgress}
-            toggleFollowingProgress={props.toggleFollowingProgress}
         />
     });
+
     return (
         <div className={scss.content}>
             <div className={scss.pagination}>{pagesElements}</div>
-            {props.isFetching ?
-                <Preloader/> : usersElements}
+            {props.isFetching ? <Preloader/> : usersElements}
         </div>
     );
 }
