@@ -1,4 +1,5 @@
 import scss from "./ProfileInfo.module.scss";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const ProfileInfo = (props) => {
     return (
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
                 {props.profileInfo.fullname}
             </div>
             <div className={`${scss.wrapper} ${scss.status}`}>
-                {props.profileInfo.status}
+                <ProfileStatus status={props.profileInfo.status}/>
             </div>
             <div className={`${scss.wrapper} ${scss.location}`}>
                 {`${props.profileInfo.location.city}, ${props.profileInfo.location.country}`}
