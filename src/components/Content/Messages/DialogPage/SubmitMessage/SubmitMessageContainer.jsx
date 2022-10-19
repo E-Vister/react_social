@@ -9,9 +9,7 @@ let mapStateToProps = (state, props) => {
     }
 };
 
-const SubmitMessageContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     updateMessageField,
     sendMessage,
 })(SubmitMessage);
-
-export default SubmitMessageContainer;

@@ -3,7 +3,7 @@ import Users from "./Users";
 import React from 'react';
 import {follow, getUsers, setCurrentPage, unfollow} from "../../../redux/users-reducer";
 
-class UsersClassContainer extends React.Component {
+class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
@@ -44,12 +44,10 @@ let mapStateToProps = (state) => {
     }
 };
 
-const UsersContainer = connect(mapStateToProps,
+export default connect(mapStateToProps,
     {
         getUsers,
         follow,
         unfollow,
         setCurrentPage,
-    })(UsersClassContainer);
-
-export default UsersContainer;
+    })(UsersContainer);

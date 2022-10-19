@@ -8,9 +8,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-const SubmitPostContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     addPost,
     updatePostField,
 })(SubmitPost);
-
-export default SubmitPostContainer;

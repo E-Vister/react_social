@@ -8,6 +8,4 @@ let mapStateToProps = (state) => {
   }
 };
 
-const LastFriendsContainer = connect(mapStateToProps, null)(LastFriends);
-
-export default LastFriendsContainer;
+export default connect(mapStateToProps, null)(LastFriends);

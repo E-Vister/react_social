@@ -3,6 +3,8 @@ import DialogPage from "./DialogPage/DialogPage";
 import {Route} from "react-router-dom";
 import Messages from "./Messages";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -21,10 +23,10 @@ let mapStateToProps = (state) => {
                               key={item.id}
                               newMessageTextField={state.dialogs.newMessageTextField}/>}/>
         }),
-        isAuth: state.auth.isAuth
     }
 };
 
-const MessagesContainer = connect(mapStateToProps, null)(Messages);
-
-export default MessagesContainer;
+export default compose(
+    connect(mapStateToProps, null),
+    withAuthRedirect
+)(Messages);
