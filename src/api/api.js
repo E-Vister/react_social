@@ -9,10 +9,6 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-    getProfile(userId) {
-        let url = `profile/${userId ? userId : 0}`;
-        return instance.get(url).then(res => res.data);
-    },
     getUsers(pageSize, currentPage) {
         let url = `users?count=${pageSize}&page=${currentPage}`;
         return instance.get(url).then(res => res.data);
@@ -26,6 +22,21 @@ export const usersAPI = {
         return instance.delete(url).then(res => res.data);
     },
 };
+
+export const profileAPI = {
+    getProfile(userId) {
+        let url = `profile/${userId ? userId : 0}`;
+        return instance.get(url).then(res => res.data);
+    },
+    getStatus(userId) {
+        let url = `profile/status/${userId ? userId : 0}`;
+        return instance.get(url).then(res => res.data);
+    },
+    updateStatus(status) {
+        let url = `profile/status`;
+        return instance.put(url, {status}).then(res => res.data);
+    }
+}
 
 export const authAPI = {
     me() {

@@ -1,11 +1,12 @@
 import users from "./users";
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
 const SET_POSTS = 'SET-POSTS';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 const SWITCH_ISFETCHING_STATUS = 'SWITCH-ISFETCHING-STATUS';
+const SET_STATUS = 'SET-STATUS';
 
 let initialState = {
     profileInfo: {
@@ -67,7 +68,6 @@ const profileReducer = (state = initialState, action) => {
                     fullname: action.fullname,
                     banner: action.banner,
                     avatar: action.avatar,
-                    status: action.status,
                     location: {
                         city: action.location.city,
                         state: action.location.state,
@@ -82,6 +82,15 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isFetching: action.status,
+            }
+        }
+        case SET_STATUS: {
+            return {
+                ...state,
+                profileInfo: {
+                    ...state.profileInfo,
+                    status: action.userStatus
+                }
             }
         }
         default:
@@ -114,13 +123,33 @@ export const switchIsFetchingStatus = (status) => {
         status: status
     }
 }
+export const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        userStatus: status
+    }
+}
 
 export const getProfile = (userId) => (dispatch) => {
     dispatch(switchIsFetchingStatus(true));
-    usersAPI.getProfile(userId).then(data => {
+    profileAPI.getProfile(userId).then(data => {
         dispatch(switchIsFetchingStatus(false));
         dispatch(setPosts(data.posts));
         dispatch(setProfileInfo(data.items));
+    });
+}
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(data => {
+        dispatch(setStatus(data.value));
+    });
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
     });
 }
 
