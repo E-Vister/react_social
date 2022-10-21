@@ -1,5 +1,6 @@
 import scss from "./ProfileStatus.module.scss";
 import React from 'react';
+import {setStatus} from "../../../../../redux/profile-reducer";
 
 class ProfileStatus extends React.Component {
     state = {
@@ -15,9 +16,20 @@ class ProfileStatus extends React.Component {
 
     deactivateEditMode = () => {
         this.setState({
-            editMode: false
+            editMode: false,
+            status: this.props.status
         });
-        this.props.updateStatus(this.state.status);
+    }
+
+    onKeyDown = (e) => {
+        if (e.key === "Enter") {
+            this.deactivateEditMode();
+            this.props.updateStatus(this.state.status);
+        }
+
+        if (e.key === "Escape") {
+            this.deactivateEditMode();
+        }
     }
 
     onStatusChange = (e) => {
@@ -26,12 +38,24 @@ class ProfileStatus extends React.Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            });
+        }
+    }
+
     render() {
-        console.log(this.props.status);
         return (
             <div>
                 {this.state.editMode
-                    ? <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.deactivateEditMode} type="text" value={this.state.status}/>
+                    ? <input onChange={this.onStatusChange}
+                             onKeyDown={this.onKeyDown}
+                             autoFocus={true}
+                             onBlur={this.deactivateEditMode}
+                             type="text"
+                             value={this.state.status}/>
                     : <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Change status'}</span>}
             </div>
         )
