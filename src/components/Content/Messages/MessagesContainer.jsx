@@ -20,8 +20,7 @@ let mapStateToProps = (state) => {
                           element={<DialogPage
                               dialogId={item.id}
                               messages={item.messages}
-                              key={item.id}
-                              newMessageTextField={state.dialogs.newMessageTextField}/>}/>
+                              key={item.id}/>}/>
         }),
     }
 };

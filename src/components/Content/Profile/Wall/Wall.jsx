@@ -1,5 +1,5 @@
 import scss from './Wall.module.scss';
-import SubmitPostContainer from "./SubmitPost/SubmitPostContainer";
+import PostFormContainer from "./PostForm/PostFormContainer";
 import Post from "./Post/Post";
 
 const Wall = (props) => {
@@ -18,7 +18,7 @@ const Wall = (props) => {
     return (
         <div className={scss.wall}>
             Feed
-            <SubmitPostContainer/>
+            <PostFormContainer/>
             <div className={scss.posts}>
                 {postsElements}
             </div>

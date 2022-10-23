@@ -21,16 +21,13 @@ let initialState = {
         },
     },
     posts: [],
-    newPostTextField: '',
     isFetching: false,
 }
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
-            let text = state.newPostTextField;
-
-            if (text === '') return;
+            if (action.postContent === '') return;
 
             let newPost = {
                 id: 5,
@@ -39,20 +36,13 @@ const profileReducer = (state = initialState, action) => {
                     surname: users[0].surname,
                     avatar: users[0].avatar
                 },
-                message: text,
+                message: action.postContent,
                 likeCount: 0
             }
 
             return {
                 ...state,
-                newPostTextField: '',
                 posts: [...state.posts, newPost],
-            }
-        }
-        case UPDATE_POST_FIELD: {
-            return {
-                ...state,
-                newPostTextField: action.text,
             }
         }
         case SET_POSTS: {
@@ -98,12 +88,9 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = () => ({
-    type: ADD_POST
-});
-export const updatePostField = (text) => ({
-    type: UPDATE_POST_FIELD,
-    text: text,
+export const addPost = (postContent) => ({
+    type: ADD_POST,
+    postContent: postContent,
 });
 export const setPosts = (posts) => ({
     type: SET_POSTS,

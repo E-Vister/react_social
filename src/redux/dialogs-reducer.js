@@ -1,8 +1,6 @@
 import users from "./users";
 
-
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_FIELD = 'UPDATE-MESSAGE-FIELD';
 
 let initialState = {
     dialogsArray: [
@@ -30,33 +28,23 @@ let initialState = {
         {
             id: 4, author: users[5],messages: []
         },
-    ],
-    newMessageTextField: '',
+    ]
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SEND_MESSAGE: {
-            let text = state.newMessageTextField;
-
-            if (text === '') return;
+            if (action.message === '') return;
 
             let newMessage = {
                 id: 5,
-                messageText: text
+                messageText: action.message
             }
 
             state.dialogsArray[action.dialogId].messages = [...state.dialogsArray[action.dialogId].messages, newMessage];
 
             return {
                 ...state,
-                newMessageTextField: ''
-            }
-        }
-        case UPDATE_MESSAGE_FIELD: {
-            return  {
-                ...state,
-                newMessageTextField: action.text
             }
         }
         default:
@@ -64,14 +52,10 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessage = (id) => ({
+export const sendMessage = (id, message) => ({
     type: SEND_MESSAGE,
     dialogId: id,
-});
-
-export const updateMessageField = (text) => ({
-    type: UPDATE_MESSAGE_FIELD,
-    text: text,
+    message: message,
 });
 
 export default dialogsReducer;

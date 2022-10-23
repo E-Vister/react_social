@@ -1,6 +1,5 @@
 import scss from "./ProfileStatus.module.scss";
 import React from 'react';
-import {setStatus} from "../../../../../redux/profile-reducer";
 
 class ProfileStatus extends React.Component {
     state = {

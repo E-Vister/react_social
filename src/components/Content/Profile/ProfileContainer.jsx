@@ -15,7 +15,6 @@ class ProfileContainer extends React.Component {
 
     render() {
         return <Profile posts={this.props.posts}
-                        newPostTextField={this.props.newPostTextField}
                         profileInfo={this.props.profileInfo}
                         isFetching={this.props.isFetching}
                         status={this.props.status}
@@ -26,7 +25,6 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         posts: state.profile.posts,
-        newPostTextField: state.profile.newPostTextField,
         profileInfo: state.profile.profileInfo,
         isFetching: state.profile.isFetching,
         status: state.profile.profileInfo.status,
