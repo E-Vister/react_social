@@ -3,6 +3,10 @@ body {
   font-weight: bold;
 }
 
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
 a {
   text-decoration: none;
 }
