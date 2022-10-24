@@ -19,8 +19,16 @@ header {
 }
 
 .login {
+  cursor: pointer;
   justify-self: end;
   align-self: center;
   margin-right: 10px;
   grid-area: 1 / 10 / 2 / 11;
+}
+
+a {
+  color: black;
+  :hover {
+    color: black;
+  }
 }

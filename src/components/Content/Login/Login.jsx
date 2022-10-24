@@ -9,7 +9,7 @@ const Login = (props) => {
     return (
         <div className={scss.container}>
             <div className={scss.logo}>Login</div>
-            <LoginForm/>
+            <LoginForm login={props.login}/>
         </div>
     );
 }
@@ -23,12 +23,13 @@ const LoginForm = (props) => {
     });
 
     const onSubmit = (data) => {
+        props.login(data.login);
         reset();
     }
 
     const registerOptions = validators({
         required: true,
-        minLength: 6,
+        minLength: 5,
         maxLength: 15
     })
 
