@@ -15,7 +15,7 @@ const Login = (props) => {
 }
 
 const LoginForm = (props) => {
-    const {register, handleSubmit, reset, formState: {errors}} = useForm({
+    const {register, handleSubmit, reset, setError, formState: {errors}} = useForm({
         defaultValues: {
             login: ''
         },
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
     });
 
     const onSubmit = (data) => {
-        props.login(data.login);
+        props.login(data.login, setError);
         reset();
     }
 

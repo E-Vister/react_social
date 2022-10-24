@@ -44,10 +44,14 @@ export const getUserData = () => (dispatch) => {
         }
     });
 }
-export const login = (login) => (dispatch) => {
+export const login = (login, setError) => (dispatch) => {
     authAPI.login(login).then(data => {
         if (data.resultCode === 0) {
             dispatch(getUserData());
+        } else {
+            setError('login', {
+                message: data.message
+            })
         }
     });
 }

@@ -1,10 +1,7 @@
 import scss from './Header.module.scss';
 import {NavLink} from "react-router-dom";
-import {useState} from "react";
 
 const Header = (props) => {
-    const [setValue] = useState();
-
     const onClick = () => {
         props.logout();
         window.location.reload();
