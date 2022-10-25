@@ -36,8 +36,8 @@ export const setUserData = (userId, userLogin, name, surname, isAuth) => {
     }
 }
 
-export const getUserData = () => (dispatch) => {
-    authAPI.me().then(data => {
+export const getAuthUserData = () => (dispatch) => {
+    return authAPI.me().then(data => {
         if (data.resultCode === 0) {
             let {id, login, name, surname} = data.loginData;
             dispatch(setUserData(id, login, name, surname, true));
@@ -47,7 +47,7 @@ export const getUserData = () => (dispatch) => {
 export const login = (login, setError) => (dispatch) => {
     authAPI.login(login).then(data => {
         if (data.resultCode === 0) {
-            dispatch(getUserData());
+            dispatch(getAuthUserData());
         } else {
             setError('login', {
                 message: data.message

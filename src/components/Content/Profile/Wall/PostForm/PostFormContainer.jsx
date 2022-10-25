@@ -3,7 +3,9 @@ import {connect} from "react-redux";
 import {addPost} from "../../../../../redux/profile-reducer";
 
 let mapStateToProps = (state) => {
-    return {}
+    return {
+        profileId: state.profile.profileInfo.id
+    }
 };
 
 export default connect(mapStateToProps, {

@@ -2,7 +2,6 @@ import users from "./users";
 import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_POST_FIELD = 'UPDATE-POST-FIELD';
 const SET_POSTS = 'SET-POSTS';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 const SWITCH_ISFETCHING_STATUS = 'SWITCH-ISFETCHING-STATUS';
@@ -10,6 +9,7 @@ const SET_STATUS = 'SET-STATUS';
 
 let initialState = {
     profileInfo: {
+        id: '',
         fullname: '',
         banner: '',
         avatar: '',
@@ -26,25 +26,6 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST: {
-            if (action.postContent === '') return;
-
-            let newPost = {
-                id: 5,
-                author: {
-                    name: users[0].name,
-                    surname: users[0].surname,
-                    avatar: users[0].avatar
-                },
-                message: action.postContent,
-                likeCount: 0
-            }
-
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-            }
-        }
         case SET_POSTS: {
             return {
                 ...state,
@@ -55,9 +36,11 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 profileInfo: {
+                    id: action.id,
                     fullname: action.fullname,
                     banner: action.banner,
                     avatar: action.avatar,
+                    status: action.status,
                     location: {
                         city: action.location.city,
                         state: action.location.state,
@@ -88,16 +71,13 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPost = (postContent) => ({
-    type: ADD_POST,
-    postContent: postContent,
-});
 export const setPosts = (posts) => ({
     type: SET_POSTS,
     posts: posts,
 });
 export const setProfileInfo = (profileInfo) => ({
     type: SET_PROFILE_INFO,
+    id: profileInfo.id,
     fullname: `${profileInfo.name} ${profileInfo.surname}`,
     avatar: profileInfo.avatar,
     banner: profileInfo.banner,
@@ -119,19 +99,27 @@ export const setStatus = (status) => {
 
 export const getProfile = (userId) => (dispatch) => {
     dispatch(switchIsFetchingStatus(true));
-    profileAPI.getProfile(userId).then(data => {
-        dispatch(switchIsFetchingStatus(false));
+
+    let getProfilePromise = profileAPI.getProfile(userId).then(data => {
         dispatch(setPosts(data.posts));
         dispatch(setProfileInfo(data.items));
     });
-}
+    let getStatusPromise = dispatch(getStatus(userId));
 
+    Promise.all([getProfilePromise, getStatusPromise]).then(() => {
+        dispatch(switchIsFetchingStatus(false));
+    })
+}
+export const addPost = (message, profileId) => (dispatch) => {
+    profileAPI.addPost(message, profileId).then(data => {
+        dispatch(setPosts(data.data.posts))
+    })
+}
 export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(data => {
+     return profileAPI.getStatus(userId).then(data => {
         dispatch(setStatus(data.value));
     });
 }
-
 export const updateStatus = (status) => (dispatch) => {
     profileAPI.updateStatus(status).then(data => {
         if (data.resultCode === 0) {

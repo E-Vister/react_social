@@ -35,6 +35,10 @@ export const profileAPI = {
     updateStatus(status) {
         let url = `profile/status`;
         return instance.put(url, {status}).then(res => res.data);
+    },
+    addPost(message, profileId) {
+        let url = `profile/posts`;
+        return instance.post(url, {message, id: profileId}).then(res => res.data);
     }
 }
 

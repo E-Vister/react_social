@@ -6,7 +6,7 @@ import {validators} from "../../../../../utils/validators";
 
 const PostForm = (props) => {
     const onSubmit = (data) => {
-        props.addPost(data.postContent);
+        props.addPost(data.postContent, props.profileId);
         reset();
     }
 
