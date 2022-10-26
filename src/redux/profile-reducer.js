@@ -1,7 +1,5 @@
-import users from "./users";
 import {profileAPI} from "../api/api";
 
-const ADD_POST = 'ADD-POST';
 const SET_POSTS = 'SET-POSTS';
 const SET_PROFILE_INFO = 'SET-PROFILE-INFO';
 const SWITCH_ISFETCHING_STATUS = 'SWITCH-ISFETCHING-STATUS';

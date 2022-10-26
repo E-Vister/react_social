@@ -7,11 +7,11 @@ import {compose} from "redux";
 import {Navigate} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
-        let userId = this.props.router.params.userId || this.props.authorizedUserId;
+    userId = this.props.router.params.userId || this.props.authorizedUserId;
 
-        if (userId !== undefined) {
-            this.props.getProfile(userId);
+    componentDidMount() {
+        if (this.userId !== undefined) {
+            this.props.getProfile(this.userId);
         }
     }
 
@@ -23,6 +23,12 @@ class ProfileContainer extends React.Component {
                         isFetching={this.props.isFetching}
                         status={this.props.status}
                         updateStatus={this.props.updateStatus}/>
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.router.params.userId !== this.props.router.params.userId) {
+            this.props.getProfile(this.props.authorizedUserId);
+        }
     }
 }
 
