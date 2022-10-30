@@ -19,16 +19,13 @@ const PostForm = (props) => {
     return (
         <div className={scss.field}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
                 <textarea
                     {...register('postContent', registerOptions)}
                     placeholder={"What's new?"}
                     cols="50"
                     rows="5"/>
-                </div>
-                <div>
-                    <button>Send</button>
-                </div>
+
+                <button><i className={scss.arrow_right}/></button>
             </form>
 
         </div>

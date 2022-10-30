@@ -1,17 +1,17 @@
 .field {
   margin-top: 5px;
 
+  form {
+    display: flex;
+    align-items: center;
+  }
+
+  @import "src/assets/stylesheets/form-textarea";
+
   textarea {
-    resize: none;
-    outline: none;
-    overflow: hidden;
-
-    border-radius: 6px;
-
     width: 93%;
     height: 25px;
-
-    padding-left: 7px;
-    line-height: 1.85em;
   }
+
+  @import "src/assets/stylesheets/form-button";
 }

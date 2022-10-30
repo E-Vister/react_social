@@ -30,7 +30,7 @@ const Navbar = (props) => {
                          className={isActive()}>Settings</NavLink>
             </div>
             <br/>
-            <div className={`${scss.item} ${scss.friends}`}>
+            <div className={scss.item}>
                 <NavLink to='/friends'
                          className={isActive()}>Friends</NavLink>
             </div>

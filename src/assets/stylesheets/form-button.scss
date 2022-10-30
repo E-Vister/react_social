@@ -1,0 +1,27 @@
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  font-family: inherit;
+  color: #fff;
+  background-color: #C3073F;
+  font-size: 20px;
+  box-sizing: content-box;
+  cursor: pointer;
+  width: 20px;
+  height: 29px;
+  text-align: center;
+  font-weight: bolder;
+
+  .arrow_right {
+    border: solid #f8e4e6;
+    border-width: 0 4px 4px 0;
+    padding: 4px;
+    display: inline-block;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin-left: 1.1px;
+  }
+}

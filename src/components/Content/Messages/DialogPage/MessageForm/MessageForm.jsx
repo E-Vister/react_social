@@ -18,15 +18,11 @@ const MessageForm = (props) => {
     return (
         <div className={scss.field}>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
                 <textarea {...register('message', registerOptions)}
                           placeholder={'Enter your message...'}
                           cols="50"
                           rows="5"/>
-                </div>
-                <div>
-                    <button>Send</button>
-                </div>
+                <button><i className={scss.arrow_right}/></button>
             </form>
 
         </div>

@@ -7,7 +7,7 @@
 
   width: auto;
   border-radius: 10px;
-  border: 5px solid lightgrey;
+  border: 3px solid #f8e4e6;
   padding: 5px;
   margin-top: 10px;
 }
@@ -30,6 +30,19 @@
   .controls {
     p {
       margin: 0 0 0 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      color: #fff;
+      background-color: #C3073F;
+      box-sizing: content-box;
+      cursor: pointer;
+      font-weight: bold;
+      width: 57px;
+      line-height: 20px;
       text-align: center;
     }
   }
@@ -41,6 +54,7 @@
 
   .name {
     font-size: 1.1em;
+    color: #C3073F;
   }
 
   .status {

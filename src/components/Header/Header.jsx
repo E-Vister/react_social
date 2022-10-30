@@ -9,10 +9,14 @@ const Header = (props) => {
 
     return (
         <header className={scss.container}>
-            <img
-                className={scss.logo}
-                src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"
-                alt="logo"/>
+            <div className={scss.logo}>
+                <NavLink to={'/profile'}>
+                    <img
+                        src="https://i.imgur.com/3nJCfA3.png"
+                        alt="logo"/>
+                </NavLink>
+            </div>
+
             <div className={scss.login}>
                 {props.isAuth
                     ? <div onClick={onClick}>{props.name}</div>
