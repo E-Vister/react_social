@@ -1,8 +1,9 @@
 import scss from './Wall.module.scss';
 import PostFormContainer from "./PostForm/PostFormContainer";
 import Post from "./Post/Post";
+import React from 'react';
 
-const Wall = (props) => {
+const Wall = React.memo((props) => {
     let postsElements;
 
     if (props.posts) {
@@ -24,6 +25,6 @@ const Wall = (props) => {
             </div>
         </div>
     );
-}
+});
 
 export default Wall;

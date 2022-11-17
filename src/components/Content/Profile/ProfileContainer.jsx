@@ -22,7 +22,10 @@ class ProfileContainer extends React.Component {
                         profileInfo={this.props.profileInfo}
                         isFetching={this.props.isFetching}
                         status={this.props.status}
-                        updateStatus={this.props.updateStatus}/>
+                        updateStatus={this.props.updateStatus}
+                        profileUserId={this.userId}
+                        sessionUserId={this.props.sessionUserId}
+        />
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,7 +42,8 @@ let mapStateToProps = (state) => {
         isFetching: state.profile.isFetching,
         status: state.profile.profileInfo.status,
         authorizedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        sessionUserId: state.auth.userId
     }
 }
 

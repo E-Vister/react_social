@@ -19,7 +19,11 @@ const ProfileInfo = (props) => {
                 {props.profileInfo.fullname}
             </div>
             <div className={`${scss.wrapper} ${scss.status}`}>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatus status={props.status}
+                               updateStatus={props.updateStatus}
+                               profileUserId={props.profileUserId}
+                               sessionUserId={props.sessionUserId}
+                />
             </div>
             <div className={`${scss.wrapper} ${scss.location}`}>
                 {`${props.profileInfo.location.city}, ${props.profileInfo.location.country}`}

@@ -10,7 +10,8 @@ const ProfileStatus = (props) => {
     }, [props.status]);
 
     const activateEditMode = () => {
-        setEditMode(true);
+
+        if (+props.profileUserId === +props.sessionUserId) setEditMode(true);
     }
 
     const deactivateEditMode = () => {

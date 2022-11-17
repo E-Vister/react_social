@@ -6,7 +6,11 @@ import Preloader from "../../common/Preloader";
 const Profile = (props) => {
     let profileElements =
         <div>
-            <ProfileInfo profileInfo={props.profileInfo} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo profileInfo={props.profileInfo}
+                         status={props.status}
+                         updateStatus={props.updateStatus}
+                         profileUserId={props.profileUserId}
+                         sessionUserId={props.sessionUserId}/>
             <Wall posts={props.posts}/>
         </div>
 
