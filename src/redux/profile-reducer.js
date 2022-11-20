@@ -95,31 +95,33 @@ export const setStatus = (status) => {
     }
 }
 
-export const getProfile = (userId) => (dispatch) => {
+export const getProfile = (userId) => async (dispatch) => {
     dispatch(switchIsFetchingStatus(true));
 
-    let getProfilePromise = profileAPI.getProfile(userId).then(data => {
+    let getProfilePromise = await profileAPI.getProfile(userId).then(data => {
         dispatch(setPosts(data.posts));
         dispatch(setProfileInfo(data.items));
     });
     let getStatusPromise = dispatch(getStatus(userId));
 
-    Promise.all([getProfilePromise, getStatusPromise]).then(() => {
+   await Promise.all([getProfilePromise, getStatusPromise]).then(() => {
         dispatch(switchIsFetchingStatus(false));
     })
 }
-export const addPost = (message, profileId) => (dispatch) => {
-    profileAPI.addPost(message, profileId).then(data => {
-        dispatch(setPosts(data.data.posts))
+export const addPost = (message, profileId) => async (dispatch) => {
+    await profileAPI.addPost(message, profileId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setPosts(data.data.posts));
+        }
     })
 }
-export const getStatus = (userId) => (dispatch) => {
-     return profileAPI.getStatus(userId).then(data => {
+export const getStatus = (userId) => async (dispatch) => {
+     return await profileAPI.getStatus(userId).then(data => {
         dispatch(setStatus(data.value));
     });
 }
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(data => {
+export const updateStatus = (status) => async (dispatch) => {
+    await profileAPI.updateStatus(status).then(data => {
         if (data.resultCode === 0) {
             dispatch(setStatus(status));
         }
