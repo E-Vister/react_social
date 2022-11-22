@@ -1,9 +1,10 @@
 import {usersAPI} from "../api/api";
 import usersReducer, {
-    followSuccess,
+    follow,
+    followSuccess, getUsers,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleFollowingProgress,
+    setUsers, toggleFollowingProgress, unfollow,
     unfollowSuccess
 } from "./users-reducer";
 import profileReducer, {switchIsFetchingStatus} from "./profile-reducer";
@@ -164,7 +165,7 @@ it('fetching status must be changed', () => {
     expect(profileReducer(state, trueAction).isFetching).toBeTruthy();
 });
 
-it ('following progress must add and delete the userId in the followingInProgress array', () => {
+it ('action must add and delete the userId in the followingInProgress array', () => {
     const userId = 1;
     let newState
 
@@ -181,5 +182,91 @@ it ('following progress must add and delete the userId in the followingInProgres
     newState = usersReducer(state, falseAction);
 
     expect(newState.followingInProgress.length).toBe(0);
+});
+
+it('the users must be received and set', async () => {
+    const apiResponse = {
+        items: [
+            {
+                id: 2,
+                name: "User2",
+                surname: "User2Surname",
+                avatar: "https://someurl.com/avatar2.png",
+                status: "Some status2",
+                location: {
+                    city: "New York City",
+                    state: "NY",
+                    country: "United States"
+                },
+                isFollowed: true
+            },
+            {
+                id: 3,
+                name: "User3",
+                surname: "User3Surname",
+                avatar: "https://someurl.com/avatar3.png",
+                status: "Some status3",
+                location: {
+                    city: "Dallas",
+                    state: "TX",
+                    country: "United States"
+                },
+                isFollowed: false
+            }
+        ],
+        totalCount: 10
+    }
+
+    usersAPIMock.getUsers.mockReturnValue(Promise.resolve(apiResponse));
+
+    const thunk = getUsers(2, 2);
+    const dispatchMock = jest.fn();
+
+    await thunk(dispatchMock);
+    expect(dispatchMock).toBeCalledTimes(4);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, switchIsFetchingStatus(true));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, switchIsFetchingStatus(false));
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, setUsers(apiResponse.items));
+    expect(dispatchMock).toHaveBeenNthCalledWith(4, setTotalUsersCount(apiResponse.totalCount));
+});
+
+it('success unfollow thunk', async () => {
+    const userId = 1;
+    const apiResponse = {
+        resultCode: 0,
+        followStatus: false,
+        message: "OK"
+    }
+
+    usersAPIMock.unfollow.mockReturnValue(Promise.resolve(apiResponse));
+
+    const thunk = unfollow(userId);
+    const dispatchMock = jest.fn();
+
+    await thunk(dispatchMock);
+    expect(dispatchMock).toBeCalledTimes(3);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, toggleFollowingProgress(true, userId));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, unfollowSuccess(userId));
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleFollowingProgress(false, userId));
+});
+
+it('success follow thunk', async () => {
+    const userId = 0;
+    const apiResponse = {
+        resultCode: 0,
+        followStatus: true,
+        message: "OK"
+    }
+
+    usersAPIMock.follow.mockReturnValue(Promise.resolve(apiResponse));
+
+    const thunk = follow(userId);
+    const dispatchMock = jest.fn();
+
+    await thunk(dispatchMock);
+    expect(dispatchMock).toBeCalledTimes(3);
+    expect(dispatchMock).toHaveBeenNthCalledWith(1, toggleFollowingProgress(true, userId));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, followSuccess(userId));
+    expect(dispatchMock).toHaveBeenNthCalledWith(3, toggleFollowingProgress(false, userId));
 });
 

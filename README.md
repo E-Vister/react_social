@@ -50,6 +50,7 @@ Technologies that have been used
 * FLUX cycle
 * Webpack
 * Axios
+* Unit-tests
 
 Getting Started
 -----------
