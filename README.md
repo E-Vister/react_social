@@ -36,6 +36,7 @@ Functionality that is presented
 * Routing
 * Status editing
 * Redirect
+* Unit-tests
 
 Technologies that have been used
 -----------
@@ -50,7 +51,6 @@ Technologies that have been used
 * FLUX cycle
 * Webpack
 * Axios
-* Unit-tests
 
 Getting Started
 -----------
