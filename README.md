@@ -48,6 +48,8 @@ Technologies that have been used
 * Local State
 * Scss
 * Redux thunks
+* HOC
+* Jest
 * FLUX cycle
 * Webpack
 * Axios
