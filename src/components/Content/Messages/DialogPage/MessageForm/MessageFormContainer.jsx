@@ -1,6 +1,6 @@
 import MessageForm from "./MessageForm";
 import {connect} from "react-redux";
-import {sendMessage} from "../../../../../redux/dialogs-reducer";
+import {addMessage} from "../../../../../redux/dialogs-reducer";
 
 let mapStateToProps = (state, props) => {
     return {
@@ -9,5 +9,5 @@ let mapStateToProps = (state, props) => {
 };
 
 export default connect(mapStateToProps, {
-    sendMessage,
+    addMessage,
 })(MessageForm);

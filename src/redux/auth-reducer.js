@@ -1,4 +1,5 @@
 import {authAPI} from "../api/api";
+import {setDialogs} from "./dialogs-reducer";
 
 const SET_USER_DATA = 'SET-USER-DATA';
 
@@ -41,6 +42,7 @@ export const getAuthUserData = () => (dispatch) => {
         if (data.resultCode === 0) {
             let {id, login, name, surname} = data.loginData;
             dispatch(setUserData(id, login, name, surname, true));
+            dispatch(setDialogs(data.dialogs))
         }
     });
 }

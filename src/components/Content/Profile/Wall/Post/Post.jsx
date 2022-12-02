@@ -10,8 +10,8 @@ const Post = (props) => {
             <span className={scss.fullname}>{`${props.author.name} ${props.author.surname}`}</span>
             <span className={scss.message}>{props.message}</span>
             <div className={scss.likes}>
-                <span className={scss.likesCount}>{props.likesCount} </span>
-                <span className={scss.likesText}>{(props.likesCount === 1) ? `Like` : `Likes`}</span>
+                <div className={scss.likesCount}>{props.likesCount} </div>
+                <div className={scss.likesIcon}><img src="/heart.svg" alt="like_icon" width={"20px"}/></div>
             </div>
         </div>
     );

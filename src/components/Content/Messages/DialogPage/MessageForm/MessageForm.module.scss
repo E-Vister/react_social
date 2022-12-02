@@ -1,9 +1,14 @@
 .field {
+  display: flex;
   margin-top: 5px;
+  align-content: flex-end;
+  align-items: flex-end;
+  flex-grow: 1;
+  max-height: 50px;
 
   form {
     display: flex;
-    align-items: center;
+    flex-grow: 1;
   }
 
   @import "src/assets/stylesheets/form-textarea";

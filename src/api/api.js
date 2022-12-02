@@ -56,3 +56,10 @@ export const authAPI = {
         return instance.delete(url).then(res => res.data);
     }
 }
+
+export const dialogsAPI = {
+    addMessage(content, dialogId) {
+        let url = 'dialogs';
+        return instance.post(url, {content, dialogId}).then(res => res.data);
+    }
+}

@@ -38,9 +38,13 @@
 }
 
 .likes {
+  padding-top: 2px;
+  padding-left: 0.2em;
+  display: flex;
+  flex-direction: row;
   grid-area: likes;
 
   .likesCount {
-    color: #950740;
+    margin-right: 2px;
   }
 }

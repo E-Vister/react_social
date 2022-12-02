@@ -1,50 +1,19 @@
-import users from "./users";
+import {dialogsAPI} from "../api/api";
 
-const SEND_MESSAGE = 'SEND-MESSAGE';
+const SET_DIALOGS = 'SET-DIALOGS';
 
 let initialState = {
-    dialogsArray: [
-        {
-            id: 0, author: users[1], messages: [
-                {
-                    id: 1,
-                    messageText: 'Morning'
-                },
-                {
-                    id: 2,
-                    messageText: 'What about our business?'
-                }
-            ]
-        },
-        {
-            id: 1, author: users[2], messages: []
-        },
-        {
-            id: 2, author: users[3], messages: []
-        },
-        {
-            id: 3, author: users[4], messages: []
-        },
-        {
-            id: 4, author: users[5],messages: []
-        },
-    ]
+    dialogsArray: []
 };
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEND_MESSAGE: {
-            if (action.message === '') return;
-
-            let newMessage = {
-                id: 5,
-                messageText: action.message
-            }
-
-            state.dialogsArray[action.dialogId].messages = [...state.dialogsArray[action.dialogId].messages, newMessage];
+        case SET_DIALOGS: {
+            if (action.dialogs === undefined) return
 
             return {
                 ...state,
+                dialogsArray: action.dialogs
             }
         }
         default:
@@ -52,10 +21,19 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessage = (id, message) => ({
-    type: SEND_MESSAGE,
-    dialogId: id,
-    message: message,
-});
+export const  setDialogs = (dialogs) => {
+    return {
+        type: SET_DIALOGS,
+        dialogs: dialogs,
+    }
+}
+
+export const addMessage = (content, dialogId) => async (dispatch) => {
+    await dialogsAPI.addMessage(content, dialogId).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(setDialogs(data.dialogs));
+        }
+    })
+}
 
 export default dialogsReducer;

@@ -5,7 +5,7 @@ import {validators} from "../../../../../utils/validators";
 
 const MessageForm = (props) => {
     const onSubmit = (data) => {
-        props.sendMessage(props.dialogId, data.message);
+        props.addMessage(data.message, props.dialogId);
         reset();
     }
 

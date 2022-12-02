@@ -1,5 +1,6 @@
 import {authAPI} from "../api/api";
 import authReducer, {getAuthUserData, login, logout, setUserData} from "./auth-reducer";
+import {setDialogs} from "./dialogs-reducer";
 
 jest.mock('../api/api');
 
@@ -40,7 +41,72 @@ it('auth data must be received', async () => {
             login: "user",
             name: "John",
             surname: "Doe"
-        }
+        },
+        dialogs: [
+            {
+                "dialogId": 0,
+                "members": [
+                    {
+                        "id": 0,
+                        "name": "John",
+                        "surname": "Doe",
+                        "avatar": "https://someurl.com/avatar.png"
+                    },
+                    {
+                        "id": 1,
+                        "name": "Bob",
+                        "surname": "Smith",
+                        "avatar": "https://someurl.com/avatar.png"
+                    }
+                ],
+                "messages": [
+                    {
+                        "id": 0,
+                        "authorId": 0,
+                        "content": "Hey"
+                    },
+                    {
+                        "id": 1,
+                        "authorId": 1,
+                        "content": "Hello"
+                    }
+                ]
+            },
+            {
+                "dialogId": 1,
+                "members": [
+                    {
+                        "id": 0,
+                        "name": "John",
+                        "surname": "Doe",
+                        "avatar": "https://someurl.com/avatar.png"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Carl",
+                        "surname": "Johnson",
+                        "avatar": "https://someurl.com/avatar.png"
+                    }
+                ],
+                "messages": [
+                    {
+                        "id": 0,
+                        "authorId": 0,
+                        "content": "Hey"
+                    },
+                    {
+                        "id": 1,
+                        "authorId": 2,
+                        "content": "Hello"
+                    },
+                    {
+                        "id": 2,
+                        "authorId": 0,
+                        "content": "New Message"
+                    }
+                ]
+            }
+        ]
     }
 
     authAPIMock.me.mockReturnValue(Promise.resolve(apiResponse));
@@ -49,7 +115,7 @@ it('auth data must be received', async () => {
     const dispatchMock = jest.fn();
 
     await thunk(dispatchMock);
-    expect(dispatchMock).toBeCalledTimes(1);
+    expect(dispatchMock).toBeCalledTimes(2);
     expect(dispatchMock).toHaveBeenNthCalledWith(1,
         setUserData(
             apiResponse.loginData.id,
@@ -58,6 +124,7 @@ it('auth data must be received', async () => {
             apiResponse.loginData.surname,
             true
         ));
+    expect(dispatchMock).toHaveBeenNthCalledWith(2, setDialogs(apiResponse.dialogs));
 });
 
 it('success login thunk', async () => {
