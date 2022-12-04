@@ -4,58 +4,84 @@
   height: 100%;
 }
 
+.chat_header {
+  display: inline-flex;
+  justify-content: space-between;
+
+  width: 100%;
+  max-height: 55px;
+
+  border-bottom: 1px solid #12161c;
+  padding-bottom: 3px;
+
+  .back_button {
+    align-self: center;
+
+    span {
+      color: #f8e4e6;
+      margin-left: 1px;
+      display: inline-flex;
+      align-items: center;
+      height: 22px;
+      word-spacing: 3px;
+    }
+
+    :hover {
+      color: #515c65;
+    }
+
+    margin-bottom: 3px;
+    padding-left: 7px;
+  }
+
+  .header_name {
+    a {
+      color: #C3073F;
+    }
+  }
+
+  .avatar {
+    padding-right: 5px;
+
+    .avatar_image {
+      border-radius: 2em;
+      max-width: 40px;
+      max-height: 40px;
+
+      background-color: white;
+    }
+  }
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 275px;
   max-width: 655px;
   padding: 0.5rem 0.5rem;
-}
 
-.messages {
-  display: flex;
-  flex-direction: column;
-  font-family: "SanFrancisco";
-  font-size: 1.10rem;
-  font-weight: normal;
-
-}
-
-.messages p {
-  border-radius: 1.15rem;
-  line-height: 1.25;
-  max-width: 75%;
-  padding: 0.5rem .875rem;
-  position: relative;
-  word-wrap: break-word;
-}
-
-.messages p::before,
-.messages p::after {
-  bottom: -0.1rem;
-  content: "";
-  height: 1rem;
-  position: absolute;
-}
-
-.back_button {
-  span {
-    color: #f8e4e6;
-    margin-left: 1px;
-    display: inline-flex;
-    align-items: center;
-    height: 22px;
+  .messages {
+    display: flex;
+    flex-direction: column;
+    font-family: "SanFrancisco";
+    font-size: 1.10rem;
+    font-weight: normal;
+    p {
+      border-radius: 1.15rem;
+      line-height: 1.25;
+      max-width: 75%;
+      padding: 0.5rem .875rem;
+      position: relative;
+      word-wrap: break-word;
+    }
   }
-  .arrow_left {
-    border: solid #f8e4e6;
-    border-width: 0 3px 3px 0;
-    padding: 4px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+  .messages p::before,
+  .messages p::after {
+    bottom: -0.1rem;
+    content: "";
+    height: 1rem;
+    position: absolute;
   }
-
-  margin-bottom: 3px;
-  padding-left: 5px;
 }
 
 @font-face {

@@ -8,7 +8,7 @@ import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
-        dialogsElements: state.dialogs.dialogsArray.map((item, index, array) => {
+        dialogsElements: state.dialogs.dialogsArray.map((item) => {
             const [interlocutorData] = item.members.filter(i => i.id !== state.auth.userId);
             const [currentUserData] = item.members.filter(i => i.id === state.auth.userId);
 
@@ -29,9 +29,14 @@ let mapStateToProps = (state) => {
             />
         }),
         dialogsPage: state.dialogs.dialogsArray.map((item) => {
+            const [{avatar, name, surname, id}] = item.members.filter(i => i.id !== state.auth.userId);
+
             return <Route path={`/${item.dialogId}/`}
                           key={item.dialogId}
                           element={<DialogPage
+                              username={`${name} ${surname}`}
+                              avatar={avatar}
+                              interlocutorId={id}
                               dialogId={item.dialogId}
                               userId={state.auth.userId}
                               messages={item.messages}

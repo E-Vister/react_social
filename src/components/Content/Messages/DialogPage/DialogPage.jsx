@@ -24,8 +24,24 @@ const DialogPage = (props) => {
 
     return (
         <div className={scss.container}>
-            <div className={scss.back_button}>
-                <NavLink to='/messages'><span><i className={scss.arrow_left}/></span><span>Back</span></NavLink>
+            <div className={scss.chat_header}>
+                <div className={scss.back_button}>
+                    <NavLink to='/messages'>
+                        <span>❮ Back</span>
+                    </NavLink>
+                </div>
+                <span className={scss.header_name}>
+                    <NavLink to={`/profile/${props.interlocutorId}`}>
+                        {props.username}
+                    </NavLink>
+                </span>
+                <div className={scss.avatar}>
+                    <NavLink to={`/profile/${props.interlocutorId}`}>
+                        <img className={scss.avatar_image}
+                             src={props.avatar}
+                             alt="title_avatar"/>
+                    </NavLink>
+                </div>
             </div>
             <div className={scss.wrapper}>
                 <div className={scss.messages}>
