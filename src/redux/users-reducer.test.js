@@ -5,9 +5,8 @@ import usersReducer, {
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toggleFollowingProgress, unfollow,
-    unfollowSuccess
+    unfollowSuccess, switchIsFetchingStatus
 } from "./users-reducer";
-import profileReducer, {switchIsFetchingStatus} from "./profile-reducer";
 
 jest.mock('../api/api');
 
@@ -161,8 +160,8 @@ it('fetching status must be changed', () => {
     const trueAction = switchIsFetchingStatus(true);
 
     expect(state.isFetching).toBeFalsy();
-    expect(profileReducer(state, falseAction).isFetching).toBeFalsy();
-    expect(profileReducer(state, trueAction).isFetching).toBeTruthy();
+    expect(usersReducer(state, falseAction).isFetching).toBeFalsy();
+    expect(usersReducer(state, trueAction).isFetching).toBeTruthy();
 });
 
 it ('action must add and delete the userId in the followingInProgress array', () => {
