@@ -2,6 +2,8 @@
   grid-area: 2 / 5 / 4 / 11;
   background-color: #0D1117;
   border-radius: 6px;
+  min-height: calc(100vh - 75px);
+  position: relative;
 
   padding: 7px;
 }

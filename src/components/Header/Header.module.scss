@@ -1,26 +1,29 @@
 .container {
   grid-area: 1 / 1 / 2 / 13;
   background-color: #0D1117;
+  position: fixed;
+  width: 100%;
+  height: 50px;
 }
 
 header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
 }
 
 .logo {
   grid-area: 1 / 3 / 2 / 4;
   align-self: center;
   padding-left: 8px;
-  width: 58px;
-  height: 58px;
+  width: 48px;
+  height: 48px;
 
   img {
-    width: 58px;
-    height: 58px;
+    width: 48px;
+    height: 48px;
     align-self: center;
   }
 }

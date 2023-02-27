@@ -5,6 +5,9 @@
   align-items: flex-end;
   flex-grow: 1;
   max-height: 50px;
+  position: absolute;
+  width: 99%;
+  bottom: 1%;
 
   form {
     display: flex;

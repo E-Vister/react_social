@@ -1,10 +1,8 @@
 .profile_info {
-  .wrapper {
+  position: relative;
+
+  .info_wrapper {
     margin-left: 18%;
-  }
-
-  .fullname {
-
   }
 
   .status {
@@ -15,26 +13,25 @@
     font-weight: normal;
     font-size: 0.9em;
   }
-}
-
-.img_wrapper {
-  position: relative;
 
   .avatar {
     border-radius: 100%;
     width: 15%;
+    max-width: 110px;
     position: absolute;
-    top: 72%;
-    left: 10px;
+    top: 48%;
+    left: 8px;
 
     border: 2px solid #950740;
     background-color: white;
   }
-}
 
-.banner {
-  img {
-    width: 100%;
-    border-radius: 5px;
+  .banner {
+    img {
+      width: 100%;
+      max-height: 130px;
+      border-radius: 5px;
+    }
   }
 }
+

@@ -13,7 +13,7 @@ const Users = (props) => {
 
     let pagesElements = pages.map(p => {
         return <span className={props.currentPage === p ? scss.selectedPage : "false"}
-                     key={props.usersArray[pages.indexOf(p)].id.toString()}
+                     key={p}
                      onClick={() => props.onPageChanged(p)}>{p}</span>
     });
 

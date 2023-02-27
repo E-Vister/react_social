@@ -6,8 +6,10 @@ const UserItem = (props) => {
         <div className={scss.content}>
             <div className={scss.wrapper}>
                 <div className={scss.avatar}>
-                    <NavLink to={`/profile/${props.user.id}`}><img src={props.user.avatar}
-                                                                   alt="user_avatar"/></NavLink>
+                    <NavLink to={`/profile/${props.user.id}`}>
+                        <img src={props.user.avatar}
+                             alt="user_avatar"/>
+                    </NavLink>
                 </div>
                 <div className={scss.controls}>
                     <p>
@@ -21,7 +23,9 @@ const UserItem = (props) => {
                 </div>
             </div>
             <div className={scss.info}>
-                <div className={scss.name}>{`${props.user.name} ${props.user.surname}`}</div>
+                <NavLink to={`/profile/${props.user.id}`}>
+                    <div className={scss.name}>{`${props.user.name} ${props.user.surname}`}</div>
+                </NavLink>
                 <div className={scss.status}>{props.user.status}</div>
             </div>
             <div className={scss.location}>

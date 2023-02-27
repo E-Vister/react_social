@@ -1,5 +1,5 @@
 body {
-  background-color: #c0c0c0;
+  background-color: #d3cccc;
   font-weight: bold;
   color: #f8e4e6;
 }
@@ -13,10 +13,10 @@ a {
 }
 
 .App {
-  font-family: "SanFrancisco";
+  font-family: "SanFrancisco", serif;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 60px 1fr;
+  grid-template-rows: 50px 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 5px;
 }

@@ -11,7 +11,7 @@ const TOGGLE_FOLLOWING_PROGRESS = 'react_social/users/TOGGLE_FOLLOWING_PROGRESS'
 let initialState = {
     usersArray: [],
     totalUsersCount: 0,
-    pageSize: 4,
+    pageSize: 6,
     currentPage: 1,
     isFetching: false,
     followingInProgress: [],

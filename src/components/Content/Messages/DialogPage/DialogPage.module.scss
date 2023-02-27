@@ -1,7 +1,8 @@
 .container {
-  max-width: 655px;
-  padding: 0.1rem;
   height: 100%;
+  max-height: calc(100vh - 90px);
+  width: 100%;
+  position: relative;
 }
 
 .chat_header {
@@ -55,17 +56,28 @@
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  min-height: 275px;
-  max-width: 655px;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+  min-height: calc(100vh - 200px);
+  max-height: 84%;
+  max-width: 100%;
   padding: 0.5rem 0.5rem;
+  overflow-y: scroll;
+
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
 
   .messages {
     display: flex;
     flex-direction: column;
-    font-family: "SanFrancisco";
+    font-family: "SanFrancisco", serif;
     font-size: 1.10rem;
     font-weight: normal;
+
     p {
       border-radius: 1.15rem;
       line-height: 1.25;

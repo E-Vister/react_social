@@ -6,10 +6,9 @@
   grid-row-gap: 0;
 
   width: auto;
-  border-radius: 10px;
-  border: 3px solid #f8e4e6;
-  padding: 5px;
-  margin-top: 10px;
+  box-shadow: 0 1px 2px 0 rgb(50 50 50 / 40%);
+  padding: 5px 5px 9px 5px;
+  margin-top: 5px;
 }
 
 .wrapper {
@@ -19,10 +18,11 @@
   grid-area: 1 / 1 / 2 / 2;
 
   .avatar {
+    max-width: 64px;
+
     img {
-      width: 70px;
-      border-radius: 8px;
-      background-color: white;
+      width: 65px;
+      border-radius: 16px;
       grid-area: avatar;
     }
   }
@@ -41,8 +41,8 @@
       box-sizing: content-box;
       cursor: pointer;
       font-weight: bold;
-      width: 57px;
-      line-height: 20px;
+      width: 53px;
+      line-height: 19px;
       text-align: center;
     }
   }
@@ -50,10 +50,11 @@
 
 .info {
   grid-area: 1 / 2 / 2 / 3;
-  padding-left: 7px;
+  padding-top: 1px;
+  padding-left: 5px;
 
   .name {
-    font-size: 1.1em;
+    font-size: 1.05em;
     color: #C3073F;
   }
 
@@ -63,6 +64,7 @@
 }
 
 .location {
+  padding-top: 1px;
   font-size: 0.9em;
   justify-self: end;
   text-align: right;
